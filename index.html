@@ -190,7 +190,8 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
 @media (max-width:720px){
   nav .links{display:none}nav{gap:12px}
   .hero{padding-top:120px}
-  .stage{height:330px}.ring .sc{width:190px;height:119px;left:-95px}.floor{top:210px}
+  .stage{height:300px;perspective:1100px}.ring .sc{width:138px;height:86px;left:-69px;top:50px;-webkit-box-reflect:none;border-radius:10px}.ring .sc span{font-size:10px;padding:5px 7px}.floor{top:190px}
+  nav{background:rgba(14,14,20,.94);transition:transform .35s ease,opacity .35s}nav.nav-hide{transform:translate(-50%,-150%);opacity:0}
   section{padding:84px 0}.wrap{padding:0 16px}
   .steps,.gal,.feat,.results{grid-template-columns:1fr}.fx.big{grid-column:auto}
   .pc{padding:28px}.pc .amt{font-size:56px}
@@ -473,7 +474,7 @@ var THEMES = [{"id":"terminal","no":1,"name":"Terminal","mode":"dark","fam":"dev
 
   /* ===== 3D ring ===== */
   var ring = $("#ring"), N = 12, picks = ["growth", "terminal", "casebook", "binge", "clinic", "darkroom", "founder", "storefront", "counsel", "wavelength", "launchpad", "channel"];
-  var small = w.innerWidth < 720, R = small ? 300 : 560;
+  var small = w.innerWidth < 720, R = small ? 330 : 560;
   for (i = 0; i < N; i++) {
     var t = byId(picks[i]), c = el("div", "sc", "<span>" + pad(t.no) + " &middot; " + t.name + "</span>");
     c.style.cssText += thumb(t.id);
@@ -492,6 +493,7 @@ var THEMES = [{"id":"terminal","no":1,"name":"Terminal","mode":"dark","fam":"dev
   var stage = $("#stage");
   ring.addEventListener("mouseover", function (e) { if (e.target.closest && e.target.closest(".sc")) { hover = true; } });
   ring.addEventListener("mouseout", function (e) { var to = e.relatedTarget; if (!(to && to.closest && to.closest(".sc"))) { hover = false; } });
+  if (touch) { var hn = d.querySelector(".hint"); if (hn) { hn.innerHTML = "SWIPE TO SPIN &middot; TAP TO OPEN"; } }
   stage.addEventListener("touchstart", function (e) { drag = true; lastX = e.touches[0].clientX; moved = 0; }, { passive: true });
   stage.addEventListener("touchmove", function (e) { var x = e.touches[0].clientX, dx = x - lastX; lastX = x; moved += Math.abs(dx); rot += dx * 0.3; }, { passive: true });
   stage.addEventListener("touchend", function () { drag = false; });
@@ -902,6 +904,12 @@ var THEMES = [{"id":"terminal","no":1,"name":"Terminal","mode":"dark","fam":"dev
     w.addEventListener("mousemove", function (e) { mx = e.clientX; my = e.clientY; dot.style.transform = "translate(" + mx + "px," + my + "px)"; });
     (function loop() { cx += (mx - cx) * 0.12; cy += (my - cy) * 0.12; cur.style.transform = "translate(" + cx + "px," + cy + "px)"; w.requestAnimationFrame(loop); })();
   }
+  var lastY = 0, navEl = d.querySelector("nav");
+  w.addEventListener("scroll", function () {
+    var y = w.pageYOffset || 0;
+    if (w.innerWidth < 720 && navEl) { navEl.className = (y > lastY + 4 && y > 140) ? "nav-hide" : (y < lastY - 4 || y <= 140 ? "" : navEl.className); }
+    lastY = y;
+  }, { passive: true });
   var prog = $("#progress");
   w.addEventListener("scroll", function () { var h = d.documentElement.scrollHeight - w.innerHeight; prog.style.width = (h > 0 ? (w.pageYOffset / h) * 100 : 0) + "%"; }, { passive: true });
 })();
