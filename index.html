@@ -49,10 +49,10 @@ nav .btn{padding:10px 18px;font-size:14px}
 
 /* 3D ring */
 .stage{position:relative;height:420px;margin-top:10px;perspective:1600px;perspective-origin:50% 30%;z-index:2}
-.ring{position:absolute;left:50%;top:40px;width:0;height:0;transform-style:preserve-3d;transform:rotateX(-8deg) rotateY(0deg)}
+.ring{position:absolute;left:50%;top:40px;width:0;height:0;transform-style:preserve-3d;transform:rotateX(-4deg) rotateY(0deg)}
 .ring .sc{position:absolute;width:300px;height:188px;left:-150px;top:0;border-radius:14px;overflow:hidden;background:#111 center/cover no-repeat;border:1px solid rgba(255,255,255,.12);box-shadow:0 30px 60px -20px rgba(0,0,0,.8);-webkit-box-reflect:below 10px linear-gradient(transparent 60%,rgba(255,255,255,.18));backface-visibility:hidden;cursor:pointer;transition:filter .3s}
 .ring .sc span{position:absolute;left:10px;bottom:10px;font:600 11px/1 "Mono",monospace;background:rgba(0,0,0,.7);padding:6px 8px;border-radius:6px;letter-spacing:.04em}
-.ring .sc:hover{filter:brightness(1.15)}
+.ring .sc:hover{filter:brightness(1.12);border-color:var(--a);box-shadow:0 0 0 2px var(--a),0 30px 60px -20px rgba(0,0,0,.8)}
 .floor{position:absolute;left:50%;top:310px;width:1200px;height:300px;margin-left:-600px;background:radial-gradient(ellipse at center,rgba(139,92,246,.35),transparent 65%);transform:rotateX(80deg);filter:blur(10px)}
 .hint{position:relative;z-index:3;text-align:center;font:500 12px/1 "Mono",monospace;color:var(--mut);letter-spacing:.12em;margin-top:-10px}
 
@@ -237,6 +237,39 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
 .vframe video{display:block;width:100%;height:auto}
 .vbar{display:flex;gap:7px;padding:12px 16px;background:#111118;border-bottom:1px solid var(--line)}.vbar i{width:11px;height:11px;border-radius:50%;background:#2c2c38}
 .vcap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:18px;color:var(--mut);font-size:14px}
+
+/* try with your resume */
+.try{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.drop{position:relative;border:1.5px dashed #3a3a4c;border-radius:var(--r);background:var(--card);padding:30px;text-align:center;cursor:pointer;transition:border-color .2s,background .2s;min-height:190px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px}
+.drop:hover,.drop.over{border-color:var(--a);background:#16161f}
+.drop input{position:absolute;inset:0;opacity:0;cursor:pointer}
+.drop svg{width:34px;height:34px;color:var(--a)}
+.drop b{font:700 19px/1.2 "Bricolage";letter-spacing:-.01em}
+.drop small{color:var(--mut);font-size:13px}
+.drop.done{border-style:solid;border-color:var(--a)}
+.drop img.pv{width:64px;height:64px;border-radius:50%;object-fit:cover}
+.tryform{grid-column:1/-1;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:24px;display:none}
+.tryform.on{display:block}
+.tryform .g4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.tryform label{display:block;font-size:12px;color:var(--mut);margin-bottom:6px}
+.tryform input{width:100%;background:#0b0b10;border:1px solid var(--line);border-radius:10px;color:var(--ink);font:inherit;padding:11px 13px;outline:none}
+.tryform input:focus{border-color:var(--a)}
+.tryrow{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:18px}
+.trynote{color:var(--mut);font-size:13px}
+.trymsg{grid-column:1/-1;font-size:14px;color:var(--mut);min-height:20px}
+.trymsg.err{color:#ff7a7a}.trymsg.ok{color:var(--a)}
+.pvw{position:fixed;inset:0;z-index:96;background:#07070a;display:none;flex-direction:column}
+.pvw.on{display:flex}
+.pvbar{display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid var(--line);background:var(--bg2);flex-wrap:wrap}
+.pvbar .lbl{font:600 12px/1 "Mono";letter-spacing:.12em;color:var(--a);margin-right:6px}
+.pvtabs{display:flex;gap:6px;flex-wrap:wrap}
+.pvtabs button{background:#16161f;border:1px solid var(--line);color:var(--mut);border-radius:999px;padding:9px 14px;font:600 13px/1 "Inter";cursor:pointer}
+.pvtabs button.on{background:var(--ink);color:#000;border-color:var(--ink)}
+.pvbar .sp{flex:1}
+.pvbar .btn{padding:10px 16px;font-size:13px}
+.pvbar .x2{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:none;color:var(--ink);font-size:20px;cursor:pointer}
+.pvw iframe{flex:1;width:100%;border:0;background:#fff}
+@media (max-width:820px){.try{grid-template-columns:1fr}.tryform .g4{grid-template-columns:1fr 1fr}}
 </style>
 </head>
 <body>
@@ -244,7 +277,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
 
 <nav>
   <a class="logo" href="#top"><i></i>Foliocraft</a>
-  <div class="links"><a href="#how">How it works</a><a href="#finder">Find my 4</a><a href="#themes">Themes</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a></div>
+  <div class="links"><a href="#try">Try it</a><a href="#how">How it works</a><a href="#finder">Find my 4</a><a href="#themes">Themes</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a></div>
   <a class="btn p buy" href="#buy">Get all 24</a>
 </nav>
 
@@ -254,10 +287,10 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
     <div class="pill rv"><b>NEW</b> 24 themes for 24 kinds of careers</div>
     <h1 class="rv">Your resume in.<br><span class="grad">A premium website out.</span></h1>
     <p class="sub rv">Upload your resume and one photo. Claude picks the 4 best themes for your profession, you choose one, and your portfolio is ready to host free. Want changes? Just ask in chat.</p>
-    <div class="ctas rv"><a class="btn p" href="#finder">Find my 4 themes <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="btn g" href="#themes">Browse all 24</a></div>
+    <div class="ctas rv"><a class="btn p" href="#try">Try with my resume <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="btn g" href="#finder">Find my 4 themes</a></div>
   </div>
   <div class="stage" id="stage"><div class="floor"></div><div class="ring" id="ring"></div></div>
-  <div class="hint">DRAG TO SPIN &middot; CLICK A THEME</div>
+  <div class="hint">HOVER TO PAUSE &middot; CLICK TO OPEN</div>
 </header>
 
 <div class="marq"><div id="mq"></div></div>
@@ -266,6 +299,23 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
   <div class="head rv" style="margin-bottom:34px"><div class="eyebrow">Watch a theme in action</div><h2>This is what <span class="grad">your site</span> feels like.</h2><p>Growth Ledger with sample content &mdash; yours gets your real resume and photo.</p></div>
   <div class="vframe rv"><div class="vbar"><i></i><i></i><i></i></div><button type="button" id="snd" aria-label="Turn sound on" style="position:absolute;right:16px;bottom:16px;z-index:2;background:rgba(10,10,14,.8);color:#fff;border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:9px 14px;font:600 13px/1 Inter,sans-serif;cursor:pointer;backdrop-filter:blur(6px)">&#128263; Sound on</button><video id="dv" src="demo-growth.mp4" poster="demo-growth.jpg" autoplay muted loop playsinline preload="metadata" disablepictureinpicture controlslist="nodownload noplaybackrate"></video></div>
   <div class="vcap"><span>Theme 06 &middot; Growth Ledger &middot; for sales, marketing &amp; growth roles</span><a href="#themes" style="color:var(--a)">See all 24 themes &rarr;</a></div>
+</div></section>
+<section id="try" style="background:var(--bg2);border-block:1px solid var(--line)"><div class="wrap">
+  <div class="head rv"><div class="eyebrow">Try it free</div><h2>See <span class="grad">your own portfolio</span> in 30 seconds.</h2><p>Drop your resume and photo. We read it right here in your browser &mdash; nothing is uploaded anywhere &mdash; and show your name and photo in your best 4 themes.</p></div>
+  <div class="try rv">
+    <label class="drop" id="dropR"><input type="file" id="fR" accept=".pdf,.docx,.txt" /><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M12 18v-6M9 15l3-3 3 3"/></svg><b id="tR">Upload resume</b><small id="sR">PDF, Word (.docx) or .txt</small></label>
+    <label class="drop" id="dropP"><input type="file" id="fP" accept="image/*" /><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg><b id="tP">Add your photo</b><small id="sP">Optional &middot; JPG or PNG, face clearly visible</small></label>
+    <div class="trymsg" id="tmsg"></div>
+    <div class="tryform" id="tform">
+      <div class="g4">
+        <div><label for="xN">Name</label><input id="xN" /></div>
+        <div><label for="xT">Job title</label><input id="xT" /></div>
+        <div><label for="xE">Email</label><input id="xE" /></div>
+        <div><label for="xP">Phone</label><input id="xP" /></div>
+      </div>
+      <div class="tryrow"><button class="btn p" type="button" id="xGo">Show my portfolio <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button><span class="trynote">Check the details we found and fix anything that looks off. The full build fills every section from your resume.</span></div>
+    </div>
+  </div>
 </div></section>
 <section id="how"><div class="wrap">
   <div class="head rv"><div class="eyebrow">How it works</div><h2>Four steps. <span class="grad">About ten minutes.</span></h2><p>No coding, no design skills, no monthly fees. Everything runs in your own Claude chat.</p></div>
@@ -338,6 +388,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
 
 <footer><div class="wrap"><span>&copy; <span id="yr">2026</span> Foliocraft. Themes 21&ndash;24 use generic streaming, store, music and video layouts with original names, and are not affiliated with any platform.</span><span><a href="#" id="mail">Contact</a></span></div></footer>
 
+<div class="pvw" id="pvw" role="dialog" aria-modal="true"><div class="pvbar"><span class="lbl">YOUR PREVIEW</span><div class="pvtabs" id="pvtabs"></div><span class="sp"></span><a class="btn p buy" href="#buy">Get this theme</a><button class="x2" id="pvx" aria-label="Close preview">&times;</button></div><iframe id="pvf" title="Your portfolio preview"></iframe></div>
 <div class="co" id="co" role="dialog" aria-modal="true"><div class="cobox">
   <button class="x" id="cox" aria-label="Close">&times;</button>
   <div class="eyebrow">Checkout</div><h3>Foliocraft Pro</h3><div class="sub2">All 24 themes &middot; the 4-best finder &middot; clean files, no watermark</div>
@@ -387,7 +438,7 @@ var CONFIG = {
     previews: { file: "pack-previews.bin", name: "foliocraft-previews.zip",      label: "Preview images (all 24)" }
   }
 };
-var THEMES = [{"id":"terminal","no":1,"name":"Terminal","mode":"dark","fam":"dev","kw":["software","developer","engineer","programmer","backend","frontend","fullstack","devops","sre","qa","tester","data","engineer","ml","engineer","cloud"],"aud":["tech"],"minp":1,"need":"low","best":"Software developers, DevOps, QA","cat":"tech","sec":"Typed command hero, contribution graph, stack, projects as repos, experience log, contact"},{"id":"plansection","no":2,"name":"Plan & Section","mode":"light","fam":"grid","kw":["architect","interior","designer","urban","planner","civil","engineer","landscape","construction"],"aud":["creative"],"minp":6,"need":"high","best":"Architects, interior designers","cat":"creative","sec":"Split-text hero, project sheets, grayscale-to-colour gallery, process, practice, contact"},{"id":"casebook","no":3,"name":"Casebook","mode":"light","fam":"editorial","kw":["ui","ux","product","designer","visual","designer","design","lead","researcher","interaction","designer"],"aud":["creative","tech"],"minp":3,"need":"medium","best":"UI/UX & product designers","cat":"creative","sec":"Sticky stacking case studies, process, clients, about, contact"},{"id":"riso","no":4,"name":"Riso","mode":"light","fam":"playful","kw":["graphic","designer","illustrator","artist","animator","brand","designer","motion","designer","art","director"],"aud":["creative"],"minp":6,"need":"high","best":"Graphic designers, illustrators","cat":"creative","sec":"Blob hero, marquee, work wall, services, about, contact"},{"id":"darkroom","no":5,"name":"Darkroom","mode":"dark","fam":"gallery","kw":["photographer","videographer","filmmaker","cinematographer","editor","wedding","photographer"],"aud":["creative"],"minp":6,"need":"high","best":"Photographers, videographers","cat":"creative","sec":"Ken-Burns hero, horizontal gallery, series, services, contact"},{"id":"growth","no":6,"name":"Growth Ledger","mode":"light","fam":"split","kw":["sales","marketing","growth","head","business","development","account","manager","key","account","revenue","gtm","revops","regional","manager","funnel","pnl","leadership","b2b"],"aud":["corporate"],"minp":3,"need":"medium","best":"Sales, marketing, growth, BD","cat":"business","sec":"3D photo stage, stats, AI toolkit rail, experience, projects, awards"},{"id":"roadmap","no":7,"name":"Roadmap","mode":"light","fam":"timeline","kw":["product","manager","program","manager","project","manager","scrum","master","product","owner","operations"],"aud":["corporate","tech"],"minp":1,"need":"low","best":"Product & project managers","cat":"business","sec":"Horizontal career roadmap, case cards, skills, contact"},{"id":"notebook","no":8,"name":"Notebook","mode":"dark","fam":"dashboard","kw":["data","scientist","data","analyst","business","analyst","bi","analyst","statistician","ml","researcher","analytics"],"aud":["tech"],"minp":1,"need":"low","best":"Data scientists, analysts","cat":"tech","sec":"Dashboard hero, charts, notebook-cell projects, stack, contact"},{"id":"advisory","no":9,"name":"Advisory","mode":"light","fam":"editorial","kw":["consultant","strategy","management","consultant","hr","human","resources","recruiter","talent","coach","advisor"],"aud":["corporate","professional","health"],"minp":3,"need":"medium","best":"Consultants, HR, coaches","cat":"business","sec":"Expertise accordion, engagements, approach, booking, contact"},{"id":"ledger","no":10,"name":"Ledger Noir","mode":"dark","fam":"editorial","kw":["chartered","accountant","ca","finance","cfo","auditor","tax","accountant","banker","investment","analyst","cfa","company","secretary"],"aud":["corporate","professional"],"minp":3,"need":"medium","best":"Chartered accountants, finance","cat":"pro","sec":"Gold hairline hero, services, credentials, experience, ICAI disclosure"},{"id":"counsel","no":11,"name":"Counsel","mode":"light","fam":"editorial","kw":["lawyer","advocate","legal","counsel","attorney","solicitor","legal","associate"],"aud":["professional"],"minp":3,"need":"medium","best":"Lawyers, advocates","cat":"pro","sec":"Disclaimer gate, practice areas, education, publications, contact"},{"id":"clinic","no":12,"name":"Clinic","mode":"light","fam":"split","kw":["doctor","physician","surgeon","dentist","physiotherapist","nurse","healthcare","clinician","pharmacist","nutritionist","dermatologist","cardiologist","pediatrician","gynecologist","orthopedic","psychiatrist","psychologist","therapist","mbbs","clinic","hospital"],"aud":["health"],"minp":3,"need":"medium","best":"Doctors, dentists, therapists","cat":"pro","sec":"Badges hero, specialities, timings tabs, qualifications, registration badge, contact"},{"id":"scholar","no":13,"name":"Scholar","mode":"light","fam":"document","kw":["professor","researcher","academic","phd","scientist","lecturer","teacher","postdoc"],"aud":["professional"],"minp":1,"need":"low","best":"Professors, researchers","cat":"pro","sec":"Sticky TOC, research, publications by year, teaching, CV"},{"id":"byline","no":14,"name":"Byline","mode":"light","fam":"editorial","kw":["writer","journalist","author","editor","copywriter","content","writer","blogger","columnist"],"aud":["creative"],"minp":3,"need":"medium","best":"Writers, journalists","cat":"creative","sec":"Rotating seal, chapters, articles list, books, contact"},{"id":"compcard","no":15,"name":"Comp Card","mode":"light","fam":"gallery","kw":["model","actor","actress","performer","dancer","influencer","anchor","host"],"aud":["creative","lifestyle"],"minp":6,"need":"high","best":"Models, actors","cat":"creative","sec":"Full-bleed editorial, comp card stats, gallery, showreel, contact"},{"id":"mise","no":16,"name":"Mise","mode":"light","fam":"playful","kw":["chef","cook","baker","hospitality","restaurant","hotel","caterer","bartender","food","stylist","cafe"],"aud":["creative","lifestyle"],"minp":6,"need":"high","best":"Chefs, hospitality","cat":"life","sec":"Spinning plate hero, menu card, dishes, kitchens, contact"},{"id":"repcount","no":17,"name":"Rep Count","mode":"dark","fam":"bold","kw":["fitness","coach","personal","trainer","yoga","instructor","wellness","coach","sports","athlete","nutrition","coach"],"aud":["health","lifestyle"],"minp":3,"need":"medium","best":"Fitness & wellness coaches","cat":"life","sec":"Kinetic headline, before/after slider, programs, pricing, contact"},{"id":"keys","no":18,"name":"Keys","mode":"light","fam":"listing","kw":["real","estate","agent","broker","property","consultant","realtor","channel","partner"],"aud":["lifestyle"],"minp":6,"need":"high","best":"Real estate agents","cat":"life","sec":"Listings with zoom, RERA fields, areas, process, contact"},{"id":"founder","no":19,"name":"Founder","mode":"dark","fam":"sidebar","kw":["founder","cofounder","ceo","cto","coo","cxo","director","vp","president","executive","entrepreneur","startup","owner"],"aud":["corporate","tech"],"minp":1,"need":"low","best":"Founders, CXOs","cat":"business","sec":"Fixed sidebar, neon blobs, ventures, KPIs, experience, contact"},{"id":"launchpad","no":20,"name":"Launchpad","mode":"light","fam":"bento","kw":["student","fresher","intern","graduate","mba","student","campus","beginner","junior"],"aud":["corporate","tech"],"minp":1,"need":"low","best":"Students, freshers","cat":"tech","sec":"Bento tiles, projects, skills, education, certifications, contact"},{"id":"binge","no":21,"name":"Binge","mode":"dark","fam":"streaming","kw":["sales","marketing","media","creator","brand","manager","content","strategist","entertainment","advertising","digital","marketer"],"aud":["corporate","creative"],"minp":3,"need":"medium","best":"Sales, media, creators","cat":"platform","sec":"Billboard hero, Top-5 numbers, project rail, episodes (experience), awards rail, AI rail"},{"id":"storefront","no":22,"name":"Storefront","mode":"light","fam":"store","kw":["sales","business","development","ecommerce","freelancer","consultant","account","manager","retail","category","manager"],"aud":["corporate"],"minp":3,"need":"medium","best":"Sales, freelancers, e-com","cat":"platform","sec":"Product-page profile, buy box, hired-together, spec table, ratings, Q&A"},{"id":"wavelength","no":23,"name":"Wavelength","mode":"dark","fam":"player","kw":["musician","singer","producer","dj","composer","audio","creative","marketing","podcaster","sound","designer"],"aud":["creative","lifestyle"],"minp":3,"need":"medium","best":"Musicians, creatives","cat":"platform","sec":"Library sidebar, artist header, popular tracks, discography, now-playing bar"},{"id":"channel","no":24,"name":"Channel","mode":"dark","fam":"video","kw":["content","creator","youtuber","educator","trainer","teacher","coach","speaker","video","creator","corporate","trainer"],"aud":["creative","lifestyle"],"minp":3,"need":"medium","best":"Creators, educators, trainers","cat":"platform","sec":"Channel banner, video grid, featured video, shorts highlights, about"}];
+var THEMES = [{"id":"terminal","no":1,"name":"Terminal","mode":"dark","fam":"dev","kw":["software","developer","engineer","programmer","backend","frontend","fullstack","devops","sre","qa","tester","data","engineer","ml","engineer","cloud"],"aud":["tech"],"minp":1,"need":"low","best":"Software developers, DevOps, QA","cat":"tech","sec":"Typed command hero, contribution graph, stack, projects as repos, experience log, contact","dn":"Arjun Mehta","dr":"Software Engineer","em":["arjun@example.dev"],"ph":[],"im":["cut-m2.png"]},{"id":"plansection","no":2,"name":"Plan & Section","mode":"light","fam":"grid","kw":["architect","interior","designer","urban","planner","civil","engineer","landscape","construction"],"aud":["creative"],"minp":6,"need":"high","best":"Architects, interior designers","cat":"creative","sec":"Split-text hero, project sheets, grayscale-to-colour gallery, process, practice, contact","dn":"Neel Shah","dr":"Architect, COA reg.","em":["studio@example.com"],"ph":["+91-98765 43210"],"im":["cut-m3.png"]},{"id":"casebook","no":3,"name":"Casebook","mode":"light","fam":"editorial","kw":["ui","ux","product","designer","visual","designer","design","lead","researcher","interaction","designer"],"aud":["creative","tech"],"minp":3,"need":"medium","best":"UI/UX & product designers","cat":"creative","sec":"Sticky stacking case studies, process, clients, about, contact","dn":"Meera Iyer","dr":"Product Designer","em":["meera@example.com"],"ph":[],"im":["ph-f2.jpg"]},{"id":"riso","no":4,"name":"Riso","mode":"light","fam":"playful","kw":["graphic","designer","illustrator","artist","animator","brand","designer","motion","designer","art","director"],"aud":["creative"],"minp":6,"need":"high","best":"Graphic designers, illustrators","cat":"creative","sec":"Blob hero, marquee, work wall, services, about, contact","dn":"Zoya Khan","dr":"Graphic Designer","em":["zoya@example.com"],"ph":[],"im":["cut-f2.png"]},{"id":"darkroom","no":5,"name":"Darkroom","mode":"dark","fam":"gallery","kw":["photographer","videographer","filmmaker","cinematographer","editor","wedding","photographer"],"aud":["creative"],"minp":6,"need":"high","best":"Photographers, videographers","cat":"creative","sec":"Ken-Burns hero, horizontal gallery, series, services, contact","dn":"Kabir Rao","dr":"Photographer","em":["kabir@example.com"],"ph":[],"im":[]},{"id":"growth","no":6,"name":"Growth Ledger","mode":"light","fam":"split","kw":["sales","marketing","growth","head","business","development","account","manager","key","account","revenue","gtm","revops","regional","manager","funnel","pnl","leadership","b2b"],"aud":["corporate"],"minp":3,"need":"medium","best":"Sales, marketing, growth, BD","cat":"business","sec":"3D photo stage, stats, AI toolkit rail, experience, projects, awards","dn":"Alex Morgan","dr":"Growth Leader","em":["alex@example.com"],"ph":["+91-98765 43210","+919876543210"],"im":["cut-m4.png","ph-m4.jpg"]},{"id":"roadmap","no":7,"name":"Roadmap","mode":"light","fam":"timeline","kw":["product","manager","program","manager","project","manager","scrum","master","product","owner","operations"],"aud":["corporate","tech"],"minp":1,"need":"low","best":"Product & project managers","cat":"business","sec":"Horizontal career roadmap, case cards, skills, contact","dn":"Rohan Kapoor","dr":"Product Manager","em":["rohan@example.com"],"ph":[],"im":["ph-m5.jpg"]},{"id":"notebook","no":8,"name":"Notebook","mode":"dark","fam":"dashboard","kw":["data","scientist","data","analyst","business","analyst","bi","analyst","statistician","ml","researcher","analytics"],"aud":["tech"],"minp":1,"need":"low","best":"Data scientists, analysts","cat":"tech","sec":"Dashboard hero, charts, notebook-cell projects, stack, contact","dn":"Sana Qureshi","dr":"Data Scientist","em":["sana@example.com"],"ph":[],"im":["ph-f1.jpg"]},{"id":"advisory","no":9,"name":"Advisory","mode":"light","fam":"editorial","kw":["consultant","strategy","management","consultant","hr","human","resources","recruiter","talent","coach","advisor"],"aud":["corporate","professional","health"],"minp":3,"need":"medium","best":"Consultants, HR, coaches","cat":"business","sec":"Expertise accordion, engagements, approach, booking, contact","dn":"Nandini Rao","dr":"HR & Organisation Consultant","em":["nandini@example.com"],"ph":[],"im":["ph-f2.jpg"]},{"id":"ledger","no":10,"name":"Ledger Noir","mode":"dark","fam":"editorial","kw":["chartered","accountant","ca","finance","cfo","auditor","tax","accountant","banker","investment","analyst","cfa","company","secretary"],"aud":["corporate","professional"],"minp":3,"need":"medium","best":"Chartered accountants, finance","cat":"pro","sec":"Gold hairline hero, services, credentials, experience, ICAI disclosure","dn":"Vikram Sharma","dr":"Chartered Accountant","em":["office@example.com"],"ph":["+91-98200 00000"],"im":["ph-m5.jpg"]},{"id":"counsel","no":11,"name":"Counsel","mode":"light","fam":"editorial","kw":["lawyer","advocate","legal","counsel","attorney","solicitor","legal","associate"],"aud":["professional"],"minp":3,"need":"medium","best":"Lawyers, advocates","cat":"pro","sec":"Disclaimer gate, practice areas, education, publications, contact","dn":"Priya Menon","dr":"Advocate","em":["chambers@example.com"],"ph":["+91-98470 00000"],"im":["ph-f1.jpg"]},{"id":"clinic","no":12,"name":"Clinic","mode":"light","fam":"split","kw":["doctor","physician","surgeon","dentist","physiotherapist","nurse","healthcare","clinician","pharmacist","nutritionist","dermatologist","cardiologist","pediatrician","gynecologist","orthopedic","psychiatrist","psychologist","therapist","mbbs","clinic","hospital"],"aud":["health"],"minp":3,"need":"medium","best":"Doctors, dentists, therapists","cat":"pro","sec":"Badges hero, specialities, timings tabs, qualifications, registration badge, contact","dn":"Ananya Desai","dr":"Cardiologist","em":["clinic@example.com"],"ph":["+91-20-0000 0000","+912000000000"],"im":["cut-f1.png"]},{"id":"scholar","no":13,"name":"Scholar","mode":"light","fam":"document","kw":["professor","researcher","academic","phd","scientist","lecturer","teacher","postdoc"],"aud":["professional"],"minp":1,"need":"low","best":"Professors, researchers","cat":"pro","sec":"Sticky TOC, research, publications by year, teaching, CV","dn":"Sneha Iyer","dr":"Researcher","em":["sneha.iyer@example.edu"],"ph":[],"im":["ph-f2.jpg"]},{"id":"byline","no":14,"name":"Byline","mode":"light","fam":"editorial","kw":["writer","journalist","author","editor","copywriter","content","writer","blogger","columnist"],"aud":["creative"],"minp":3,"need":"medium","best":"Writers, journalists","cat":"creative","sec":"Rotating seal, chapters, articles list, books, contact","dn":"Ira Malhotra","dr":"Journalist & Writer","em":["ira@example.com"],"ph":["+91-98765 43210"],"im":["ph-f2.jpg"]},{"id":"compcard","no":15,"name":"Comp Card","mode":"light","fam":"gallery","kw":["model","actor","actress","performer","dancer","influencer","anchor","host"],"aud":["creative","lifestyle"],"minp":6,"need":"high","best":"Models, actors","cat":"creative","sec":"Full-bleed editorial, comp card stats, gallery, showreel, contact","dn":"Tara Sen","dr":"Model & Actor","em":["bookings@example.com"],"ph":["+91-22-0000 0000"],"im":[]},{"id":"mise","no":16,"name":"Mise","mode":"light","fam":"playful","kw":["chef","cook","baker","hospitality","restaurant","hotel","caterer","bartender","food","stylist","cafe"],"aud":["creative","lifestyle"],"minp":6,"need":"high","best":"Chefs, hospitality","cat":"life","sec":"Spinning plate hero, menu card, dishes, kitchens, contact","dn":"Aditya Fernandes","dr":"Chef","em":["hello@example.com"],"ph":[],"im":["ph-m1.jpg"]},{"id":"repcount","no":17,"name":"Rep Count","mode":"dark","fam":"bold","kw":["fitness","coach","personal","trainer","yoga","instructor","wellness","coach","sports","athlete","nutrition","coach"],"aud":["health","lifestyle"],"minp":3,"need":"medium","best":"Fitness & wellness coaches","cat":"life","sec":"Kinetic headline, before/after slider, programs, pricing, contact","dn":"Viraj Singh","dr":"Fitness Coach","em":["coach@example.com"],"ph":[],"im":["cut-m2.png"]},{"id":"keys","no":18,"name":"Keys","mode":"light","fam":"listing","kw":["real","estate","agent","broker","property","consultant","realtor","channel","partner"],"aud":["lifestyle"],"minp":6,"need":"high","best":"Real estate agents","cat":"life","sec":"Listings with zoom, RERA fields, areas, process, contact","dn":"Rahul Verma","dr":"Real Estate Agent","em":["rahul@example.com"],"ph":["+91-98200 11111"],"im":["ph-m3.jpg"]},{"id":"founder","no":19,"name":"Founder","mode":"dark","fam":"sidebar","kw":["founder","cofounder","ceo","cto","coo","cxo","director","vp","president","executive","entrepreneur","startup","owner"],"aud":["corporate","tech"],"minp":1,"need":"low","best":"Founders, CXOs","cat":"business","sec":"Fixed sidebar, neon blobs, ventures, KPIs, experience, contact","dn":"Kavya Reddy","dr":"Founder & CEO","em":["kavya@example.com"],"ph":["+91-98765 43210"],"im":["ph-f1.jpg"]},{"id":"launchpad","no":20,"name":"Launchpad","mode":"light","fam":"bento","kw":["student","fresher","intern","graduate","mba","student","campus","beginner","junior"],"aud":["corporate","tech"],"minp":1,"need":"low","best":"Students, freshers","cat":"tech","sec":"Bento tiles, projects, skills, education, certifications, contact","dn":"Aarav Gupta","dr":"CS Student","em":["aarav@example.com"],"ph":["+91-98765 43210","+919876543210"],"im":["cut-m3.png"]},{"id":"binge","no":21,"name":"Binge","mode":"dark","fam":"streaming","kw":["sales","marketing","media","creator","brand","manager","content","strategist","entertainment","advertising","digital","marketer"],"aud":["corporate","creative"],"minp":3,"need":"medium","best":"Sales, media, creators","cat":"platform","sec":"Billboard hero, Top-5 numbers, project rail, episodes (experience), awards rail, AI rail","dn":"Alex Morgan","dr":"Growth Leader","em":["alex@example.com"],"ph":[],"im":["ph-m1.jpg"]},{"id":"storefront","no":22,"name":"Storefront","mode":"light","fam":"store","kw":["sales","business","development","ecommerce","freelancer","consultant","account","manager","retail","category","manager"],"aud":["corporate"],"minp":3,"need":"medium","best":"Sales, freelancers, e-com","cat":"platform","sec":"Product-page profile, buy box, hired-together, spec table, ratings, Q&A","dn":"Alex Morgan","dr":"Growth Leader","em":["alex@example.com"],"ph":["+91-98765 43210"],"im":["cut-m4.png","ph-m4.jpg"]},{"id":"wavelength","no":23,"name":"Wavelength","mode":"dark","fam":"player","kw":["musician","singer","producer","dj","composer","audio","creative","marketing","podcaster","sound","designer"],"aud":["creative","lifestyle"],"minp":3,"need":"medium","best":"Musicians, creatives","cat":"platform","sec":"Library sidebar, artist header, popular tracks, discography, now-playing bar","dn":"Alex Morgan","dr":"Growth Leader","em":["alex@example.com"],"ph":[],"im":["ph-m1.jpg"]},{"id":"channel","no":24,"name":"Channel","mode":"dark","fam":"video","kw":["content","creator","youtuber","educator","trainer","teacher","coach","speaker","video","creator","corporate","trainer"],"aud":["creative","lifestyle"],"minp":3,"need":"medium","best":"Creators, educators, trainers","cat":"platform","sec":"Channel banner, video grid, featured video, shorts highlights, about","dn":"Alex Morgan","dr":"Growth Leader","em":["alex@example.com"],"ph":[],"im":["ph-m4.jpg"]}];
 </script>
 <script>
 (function () {
@@ -430,26 +481,21 @@ var THEMES = [{"id":"terminal","no":1,"name":"Terminal","mode":"dark","fam":"dev
     c.setAttribute("data-id", t.id);
     ring.appendChild(c);
   }
-  var rot = 0, vel = reduce ? 0 : 0.12, tiltX = -8, drag = false, lastX = 0, moved = 0;
+  /* steady spin on one axis; hovering a card pauses it, clicking opens it; swipe on touch */
+  var rot = 0, speed = reduce ? 0 : 0.11, vel = speed, hover = false, drag = false, lastX = 0, moved = 0;
   function spin() {
-    if (!drag) { rot += vel; vel += ((reduce ? 0 : 0.12) - vel) * 0.02; }
-    var sc = w.pageYOffset || 0;
-    ring.style.transform = "rotateX(" + (tiltX - Math.min(sc / 30, 14)) + "deg) rotateY(" + rot + "deg)";
+    if (!drag) { vel += ((hover ? 0 : speed) - vel) * (hover ? 0.2 : 0.05); rot += vel; }
+    ring.style.transform = "rotateX(-4deg) rotateY(" + rot + "deg)";
     w.requestAnimationFrame(spin);
   }
   w.requestAnimationFrame(spin);
   var stage = $("#stage");
-  function down(x) { drag = true; lastX = x; moved = 0; }
-  function move(x) { if (!drag) { return; } var dx = x - lastX; lastX = x; moved += Math.abs(dx); rot += dx * 0.25; vel = dx * 0.25; }
-  function up() { drag = false; }
-  stage.addEventListener("mousedown", function (e) { down(e.clientX); e.preventDefault(); });
-  w.addEventListener("mousemove", function (e) { move(e.clientX); });
-  w.addEventListener("mouseup", up);
-  stage.addEventListener("touchstart", function (e) { down(e.touches[0].clientX); }, { passive: true });
-  stage.addEventListener("touchmove", function (e) { move(e.touches[0].clientX); }, { passive: true });
-  stage.addEventListener("touchend", up);
-  stage.addEventListener("mousemove", function (e) { if (!drag) { var r = stage.getBoundingClientRect(); tiltX = -8 + ((e.clientY - r.top) / r.height - 0.5) * -10; } });
-  stage.addEventListener("click", function (e) { var s = e.target.closest ? e.target.closest(".sc") : null; if (s && moved < 6) { openTheme(s.getAttribute("data-id")); } });
+  ring.addEventListener("mouseover", function (e) { if (e.target.closest && e.target.closest(".sc")) { hover = true; } });
+  ring.addEventListener("mouseout", function (e) { var to = e.relatedTarget; if (!(to && to.closest && to.closest(".sc"))) { hover = false; } });
+  stage.addEventListener("touchstart", function (e) { drag = true; lastX = e.touches[0].clientX; moved = 0; }, { passive: true });
+  stage.addEventListener("touchmove", function (e) { var x = e.touches[0].clientX, dx = x - lastX; lastX = x; moved += Math.abs(dx); rot += dx * 0.3; }, { passive: true });
+  stage.addEventListener("touchend", function () { drag = false; });
+  stage.addEventListener("click", function (e) { var s = e.target.closest ? e.target.closest(".sc") : null; if (s && moved < 8) { openTheme(s.getAttribute("data-id")); } moved = 0; });
 
   /* ===== Gallery ===== */
   var gal = $("#gal");
@@ -658,6 +704,158 @@ var THEMES = [{"id":"terminal","no":1,"name":"Terminal","mode":"dark","fam":"dev
   var dv = $("#dv"), snd = $("#snd");
   if (dv && snd) { snd.onclick = function () { dv.muted = !dv.muted; if (!dv.muted) { try { dv.play(); } catch (x) {} } snd.innerHTML = dv.muted ? "&#128263; Sound on" : "&#128266; Sound off"; }; }
 
+  /* ===== Try with your resume (all in the browser) ===== */
+  var tryData = { photo: "" }, pdfReady = null;
+  function tmsg(t, c) { var m = $("#tmsg"); m.className = "trymsg" + (c ? " " + c : ""); m.textContent = t; }
+  function loadPdfJs() {
+    if (pdfReady) { return pdfReady; }
+    pdfReady = new Promise(function (res, rej) {
+      var sc = d.createElement("script"); sc.src = "pdf.min.js";
+      sc.onload = function () { w.pdfjsLib.GlobalWorkerOptions.workerSrc = "pdf.worker.min.js"; res(w.pdfjsLib); };
+      sc.onerror = rej; d.head.appendChild(sc);
+    });
+    return pdfReady;
+  }
+  function pdfText(buf) {
+    return loadPdfJs().then(function (lib) { return lib.getDocument({ data: buf }).promise; }).then(function (doc) {
+      var jobs = [], n = Math.min(doc.numPages, 4), p;
+      for (p = 1; p <= n; p++) { jobs.push(doc.getPage(p).then(function (pg) { return pg.getTextContent(); })); }
+      return Promise.all(jobs).then(function (pages) {
+        var lines = [], big = { h: 0, s: "" };
+        pages.forEach(function (tc, pi) {
+          var rows = {}, keys = [];
+          tc.items.forEach(function (it) {
+            var y = Math.round(it.transform[5] / 3), h = Math.abs(it.transform[3]);
+            if (!rows[y]) { rows[y] = []; keys.push(y); } rows[y].push(it);
+            if (pi === 0 && it.str.replace(/\s/g, "").length > 2 && h > big.h) { big = { h: h, s: it.str }; }
+          });
+          keys.sort(function (a, b) { return b - a; });
+          keys.forEach(function (k) { lines.push(rows[k].sort(function (a, b) { return a.transform[4] - b.transform[4]; }).map(function (x) { return x.str; }).join(" ").replace(/\s+/g, " ").trim()); });
+        });
+        return { lines: lines, big: big.s.trim() };
+      });
+    });
+  }
+  function docxText(buf) {
+    if (!w.DecompressionStream) { return Promise.reject(new Error("docx")); }
+    var dv = new DataView(buf), u8 = new Uint8Array(buf), eocd = -1, k;
+    for (k = u8.length - 22; k >= 0; k--) { if (dv.getUint32(k, true) === 0x06054b50) { eocd = k; break; } }
+    if (eocd < 0) { return Promise.reject(new Error("zip")); }
+    var cnt = dv.getUint16(eocd + 10, true), off = dv.getUint32(eocd + 16, true);
+    for (k = 0; k < cnt; k++) {
+      var nlen = dv.getUint16(off + 28, true), elen = dv.getUint16(off + 30, true), clen2 = dv.getUint16(off + 32, true);
+      var name = new TextDecoder().decode(u8.subarray(off + 46, off + 46 + nlen));
+      if (name === "word/document.xml") {
+        var method = dv.getUint16(off + 10, true), csize = dv.getUint32(off + 20, true), lho = dv.getUint32(off + 42, true);
+        var start = lho + 30 + dv.getUint16(lho + 26, true) + dv.getUint16(lho + 28, true), data = u8.subarray(start, start + csize);
+        var p = method === 0 ? Promise.resolve(data.buffer.slice(data.byteOffset, data.byteOffset + data.byteLength)) :
+          new Response(new Blob([data]).stream().pipeThrough(new DecompressionStream("deflate-raw"))).arrayBuffer();
+        return p.then(function (ab) {
+          var xml = new TextDecoder().decode(ab), paras = xml.split(/<\/w:p>/), lines = [];
+          paras.forEach(function (pp) { var t = (pp.match(/<w:t[^>]*>[^<]*<\/w:t>/g) || []).map(function (x) { return x.replace(/<[^>]+>/g, ""); }).join(""); t = t.replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">").trim(); if (t) { lines.push(t); } });
+          return { lines: lines, big: "" };
+        });
+      }
+      off += 46 + nlen + elen + clen2;
+    }
+    return Promise.reject(new Error("nodoc"));
+  }
+  var ROLE = /(manager|engineer|developer|designer|analyst|consultant|lead|head|director|officer|specialist|executive|associate|architect|accountant|advocate|lawyer|doctor|physician|surgeon|dentist|nurse|teacher|professor|lecturer|researcher|scientist|student|intern|founder|ceo|cto|coo|cfo|vp|president|coach|trainer|chef|writer|journalist|editor|photographer|model|actor|agent|broker|marketer|strategist|administrator|coordinator|representative|partner)/i;
+  function guess(r) {
+    var all = r.lines.join("\n"), out = {};
+    var em = all.match(/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/); out.e = em ? em[0] : "";
+    var ph = all.match(/(\+?\d[\d\s().-]{8,15}\d)/); out.p = ph ? ph[1].replace(/\s+/g, " ").trim() : "";
+    var clean = r.lines.filter(function (l) { return l && l.length < 90; });
+    function isName(l) { return /^[A-Za-z][A-Za-z.'-]+(\s+[A-Za-z][A-Za-z.'-]+){1,3}$/.test(l) && !ROLE.test(l) && !/(resume|curriculum|vitae|profile|summary|contact)/i.test(l); }
+    var nm = r.big && isName(r.big.trim()) ? r.big.trim() : "", idx = -1, k;
+    if (!nm) { for (k = 0; k < Math.min(clean.length, 8); k++) { if (isName(clean[k])) { nm = clean[k]; idx = k; break; } } } else { idx = clean.indexOf(nm); }
+    if (nm === nm.toUpperCase()) { nm = nm.toLowerCase().replace(/\b[a-z]/g, function (c) { return c.toUpperCase(); }); }
+    out.n = nm;
+    var tt = "";
+    for (k = Math.max(0, idx + 1); k < Math.min(clean.length, idx + 8); k++) {
+      var l = clean[k].replace(/[|•·]/g, " ").replace(/\s+/g, " ").trim();
+      if (l.indexOf("@") < 0 && !/\d{5,}/.test(l) && ROLE.test(l) && l.length < 70) { tt = l; break; }
+    }
+    if (!tt) { for (k = 0; k < clean.length; k++) { if (ROLE.test(clean[k]) && clean[k].length < 60 && clean[k].indexOf("@") < 0) { tt = clean[k]; break; } } }
+    out.t = tt;
+    return out;
+  }
+  function readResume(file) {
+    var ext = (file.name.split(".").pop() || "").toLowerCase();
+    tmsg("Reading " + file.name + " in your browser...");
+    var rd = new FileReader();
+    rd.onload = function () {
+      var buf = rd.result, job;
+      if (ext === "pdf") { job = pdfText(buf); }
+      else if (ext === "docx") { job = docxText(buf); }
+      else { job = Promise.resolve({ lines: new TextDecoder().decode(buf).split(/\r?\n/).map(function (x) { return x.trim(); }), big: "" }); }
+      job.then(function (r) {
+        var g = guess(r);
+        $("#xN").value = g.n; $("#xT").value = g.t; $("#xE").value = g.e; $("#xP").value = g.p;
+        $("#tform").className = "tryform on"; $("#dropR").className = "drop done"; $("#tR").textContent = file.name; $("#sR").textContent = "Read in your browser ✓";
+        tmsg(g.n ? "Done. Check the details below, then press Show my portfolio." : "We couldn't spot your name - please type it below.", "ok");
+      })["catch"](function (e) { tmsg(e && e.message === "docx" ? "Your browser can't read Word files - please upload a PDF." : "Couldn't read that file. Try a PDF export of your resume.", "err"); });
+    };
+    rd.readAsArrayBuffer(file);
+  }
+  $("#fR").onchange = function () { if (this.files[0]) { readResume(this.files[0]); } };
+  $("#fP").onchange = function () {
+    var f = this.files[0]; if (!f) { return; }
+    if (tryData.photo) { URL.revokeObjectURL(tryData.photo); }
+    tryData.photo = URL.createObjectURL(f);
+    $("#dropP").className = "drop done"; $("#tP").textContent = "Photo added"; $("#sP").innerHTML = '<img class="pv" src="' + tryData.photo + '" alt="">';
+  };
+  ["dropR", "dropP"].forEach(function (id) {
+    var z = $("#" + id);
+    z.addEventListener("dragover", function () { z.className += " over"; });
+    z.addEventListener("dragleave", function () { z.className = z.className.replace(" over", ""); });
+    z.addEventListener("drop", function () { z.className = z.className.replace(" over", ""); });
+  });
+  function esc(x) { return x.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); }
+  function keepCase(src, rep) { return src === src.toUpperCase() && src !== src.toLowerCase() ? rep.toUpperCase() : rep; }
+  function personalize(doc, t) {
+    var N = $("#xN").value.trim(), T = $("#xT").value.trim(), E = $("#xE").value.trim(), P = $("#xP").value.trim();
+    if (!doc || !doc.body) { return; }
+    var parts = t.dn.split(" "), first = parts[0], last = parts[parts.length - 1], up = N.split(/\s+/), uf = up[0] || "", ul = up.length > 1 ? up[up.length - 1] : "";
+    var rules = [];
+    if (N) { rules.push([new RegExp(esc(t.dn), "gi"), N]); rules.push([new RegExp("\\b" + esc(first) + "\\b", "gi"), uf]); if (ul) { rules.push([new RegExp("\\b" + esc(last) + "\\b", "gi"), ul]); } }
+    if (T) { rules.push([new RegExp(esc(t.dr), "gi"), T]); }
+    if (E) { t.em.forEach(function (x) { rules.push([new RegExp(esc(x), "gi"), E]); }); }
+    if (P) { t.ph.forEach(function (x) { rules.push([new RegExp(esc(x), "g"), P]); }); }
+    function fix(str) { rules.forEach(function (r) { str = str.replace(r[0], function (m) { return keepCase(m, r[1]); }); }); return str; }
+    var walker = doc.createTreeWalker(doc.body, 4, null, false), nd, list = [];
+    while ((nd = walker.nextNode())) { if (nd.parentNode && !/^(SCRIPT|STYLE)$/.test(nd.parentNode.nodeName)) { list.push(nd); } }
+    list.forEach(function (x) { var v = fix(x.nodeValue); if (v !== x.nodeValue) { x.nodeValue = v; } });
+    doc.title = fix(doc.title);
+    var imgs = doc.images, k;
+    for (k = 0; k < imgs.length; k++) {
+      var src = (imgs[k].getAttribute("src") || "").split("/").pop();
+      if (imgs[k].alt) { imgs[k].alt = fix(imgs[k].alt); }
+      if (tryData.photo && t.im.indexOf(src) > -1) { imgs[k].src = tryData.photo; imgs[k].style.objectFit = "cover"; }
+    }
+    var bar = doc.querySelector(".fc-bar");
+    if (bar) { bar.firstChild.nodeValue = "Your preview \u00b7 sample sections "; }
+    var tops = doc.querySelectorAll("a[href^='index.html']");
+    for (k = 0; k < tops.length; k++) { tops[k].target = "_top"; }
+    var links = doc.querySelectorAll("a[href^='mailto:']");
+    for (k = 0; k < links.length; k++) { if (E) { links[k].href = "mailto:" + E; } }
+  }
+  var pvw = $("#pvw"), pvf = $("#pvf"), pvList = [], pvCur = null;
+  pvf.addEventListener("load", function () { try { if (pvCur) { personalize(pvf.contentDocument, pvCur); } } catch (x) {} });
+  function showTheme(t) {
+    pvCur = t; pvf.src = t.id + ".html";
+    var bs = $("#pvtabs").children; for (var k = 0; k < bs.length; k++) { bs[k].className = bs[k].getAttribute("data-id") === t.id ? "on" : ""; }
+  }
+  $("#xGo").onclick = function () {
+    if (!$("#xN").value.trim()) { $("#xN").focus(); tmsg("Please add your name.", "err"); return; }
+    pvList = pick($("#xT").value || "professional", tryData.photo ? 1 : 1, "");
+    var tabs = $("#pvtabs"); tabs.innerHTML = "";
+    pvList.forEach(function (r, k) { var b = el("button", "", "#" + (k + 1) + " " + r.t.name); b.type = "button"; b.setAttribute("data-id", r.t.id); b.onclick = function () { showTheme(r.t); }; tabs.appendChild(b); });
+    pvw.className = "pvw on"; d.body.style.overflow = "hidden"; showTheme(pvList[0].t);
+  };
+  $("#pvx").onclick = function () { pvw.className = "pvw"; d.body.style.overflow = ""; pvf.src = "about:blank"; };
+  d.addEventListener("keydown", function (e) { if (e.key === "Escape" && pvw.className.indexOf("on") > -1) { $("#pvx").click(); } });
+
   /* ===== FAQ ===== */
   var FAQ = [
     ["What exactly do I get?", "A Claude skill (one zip file) with 24 themes, preview images, the theme finder and a checker. You add it to your Claude once, then Claude builds and edits your site from your resume."],
@@ -667,6 +865,7 @@ var THEMES = [{"id":"terminal","no":1,"name":"Terminal","mode":"dark","fam":"dev
     ["Will it invent numbers to make me look good?", "No. Every claim comes from your resume or from you. If a section has nothing real to show, it is removed."],
     ["I'm a lawyer / doctor / CA. Is that okay?", "Yes, and those themes follow Indian professional rules: a Bar Council disclaimer, a medical registration number with no testimonials, and an ICAI disclosure."],
     ["Are the streaming, store, music and video themes legal to use?", "Yes. They use common layout patterns with original names, colours and wordmarks. No logos or brand names, and each says it's not affiliated with any platform."],
+    ["Is my resume uploaded when I try the preview?", "No. The preview reads your resume and photo inside your own browser. Nothing is sent to us or stored anywhere; closing the tab clears it."],
     ["How does payment work?", "Pay by UPI from any app (scan the QR or tap the UPI button), then submit your transaction ID. Once the payment is verified you receive a voucher code by email. Enter it under Redeem voucher to download the clean, watermark-free files."],
     ["Why do the previews have a watermark?", "The demos on this site are protected previews with sample content. Your purchased files have no watermark and are filled with your own details."],
     ["What do I need to use it?", "A Claude account that supports Skills, your resume (PDF or Word) and at least one photo."]
@@ -732,9 +931,12 @@ var THEMES = [{"id":"terminal","no":1,"name":"Terminal","mode":"dark","fam":"dev
   d.addEventListener("keyup", function (e) {
     if ((e.key || "").toLowerCase() === "printscreen") { shield(true, 1800); try { navigator.clipboard.writeText("Protected preview - foliocraft"); } catch (x) {} }
   });
-  w.addEventListener("blur", function () { shield(true); });
-  w.addEventListener("focus", function () { setTimeout(function () { shield(false); }, 250); });
-  d.addEventListener("visibilitychange", function () { if (d.hidden) { shield(true); } });
+  var framed = false; try { framed = w.self !== w.top; } catch (x) { framed = true; }
+  if (!framed) {
+    w.addEventListener("blur", function () { setTimeout(function () { var ae = d.activeElement; if (!(ae && ae.tagName === "IFRAME")) { shield(true); } }, 0); });
+    w.addEventListener("focus", function () { setTimeout(function () { shield(false); }, 250); });
+    d.addEventListener("visibilitychange", function () { if (d.hidden) { shield(true); } });
+  }
 })();
 </script>
 </body>

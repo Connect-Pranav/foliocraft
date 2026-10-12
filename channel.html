@@ -323,7 +323,7 @@ body{background:var(--bg);color:var(--ink);font-family:"Inter",sans-serif;font-s
 </script>
 
 <style>
-html::after{content:"";position:fixed;left:0;top:0;right:0;bottom:0;pointer-events:none;z-index:2147483645;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='420' height='260'%3E%3Ctext x='20' y='150' transform='rotate(-24 210 130)' font-family='Arial,sans-serif' font-size='22' font-weight='700' fill='%23888' fill-opacity='.22'%3EPREVIEW %E2%80%A2 FOLIOCRAFT%3C/text%3E%3C/svg%3E")}
+html::after{content:"";position:fixed;left:0;top:0;right:0;bottom:0;pointer-events:none;z-index:2147483645;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='760' height='480'%3E%3Ctext x='60' y='280' transform='rotate(-20 380 240)' font-family='Arial,sans-serif' font-size='17' font-weight='700' letter-spacing='3' fill='%23888' fill-opacity='.10'%3EPREVIEW %E2%80%A2 FOLIOCRAFT%3C/text%3E%3C/svg%3E")}
 .fc-bar{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:2147483644;display:flex;gap:12px;align-items:center;padding:9px 10px 9px 16px;border-radius:999px;background:rgba(10,10,14,.92);color:#fff;font:600 13px/1 system-ui,sans-serif;box-shadow:0 10px 30px rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.12);white-space:nowrap}
 .fc-bar a{background:#d4ff3a;color:#000!important;padding:8px 12px;border-radius:999px;text-decoration:none}
 @media (max-width:520px){.fc-bar{font-size:11px;bottom:10px}.fc-bar span{display:none}}
@@ -366,9 +366,12 @@ html::after{content:"";position:fixed;left:0;top:0;right:0;bottom:0;pointer-even
   d.addEventListener("keyup", function (e) {
     if ((e.key || "").toLowerCase() === "printscreen") { shield(true, 1800); try { navigator.clipboard.writeText("Protected preview - foliocraft"); } catch (x) {} }
   });
-  w.addEventListener("blur", function () { shield(true); });
-  w.addEventListener("focus", function () { setTimeout(function () { shield(false); }, 250); });
-  d.addEventListener("visibilitychange", function () { if (d.hidden) { shield(true); } });
+  var framed = false; try { framed = w.self !== w.top; } catch (x) { framed = true; }
+  if (!framed) {
+    w.addEventListener("blur", function () { setTimeout(function () { var ae = d.activeElement; if (!(ae && ae.tagName === "IFRAME")) { shield(true); } }, 0); });
+    w.addEventListener("focus", function () { setTimeout(function () { shield(false); }, 250); });
+    d.addEventListener("visibilitychange", function () { if (d.hidden) { shield(true); } });
+  }
 })();
 </script>
 </body>
