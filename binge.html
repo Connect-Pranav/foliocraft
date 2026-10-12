@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Alex Morgan | Growth Leader</title>
+<meta name="description" content="Streaming-style portfolio" />
+<meta name="theme-template" content="binge" />
+<link rel="icon" href="favicon.png" type="image/png" />
+<style>
+@font-face{font-family:"Bebas Neue";src:url("bebas-neue-latin-400-normal.woff2") format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Inter";src:url("inter-latin-wght-normal.woff2") format("woff2");font-weight:100 900;font-display:swap}
+*{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility} img{max-width:100%;display:block} a{color:inherit;text-decoration:none} p{margin:0} h1,h2,h3,h4{margin:0;font-weight:inherit}
+.ico{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none;display:inline-block;vertical-align:middle}
+.reveal{opacity:0;transform:perspective(900px) translateY(28px) rotateX(8deg);transform-origin:50% 100%;transition:opacity .8s ease,transform .9s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none} .no-io .reveal{opacity:1;transform:none}
+[data-split] .sw{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.08em;margin-bottom:-.08em} [data-split] .sw>span{display:inline-block;transform:translateY(105%);transition:transform .9s cubic-bezier(.2,.8,.2,1)}
+[data-split].in .sw>span,.in [data-split] .sw>span{transform:none}
+[data-rotate]{display:inline-block;transition:opacity .35s,transform .35s} [data-rotate].out{opacity:0;transform:translateY(-30%)}
+.tilt{position:relative;transform-style:preserve-3d;will-change:transform}
+.tilt:after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .3s;background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(255,255,255,.22),rgba(255,255,255,0) 55%)}
+.tilt.hovering:after{opacity:1}
+.magnetic{transition:transform .25s cubic-bezier(.2,.7,.2,1);display:inline-flex}
+#progress{position:fixed;left:0;top:0;height:3px;width:100%;transform-origin:0 50%;transform:scaleX(0);z-index:90;background:var(--accent,#ff5100)}
+.cur{position:fixed;left:0;top:0;pointer-events:none;z-index:9999;border-radius:50%;will-change:transform;display:none}
+body.has-cur .cur{display:block}
+.cur-dot{width:10px;height:10px;margin:-5px 0 0 -5px;background:#fff;mix-blend-mode:difference;box-shadow:0 0 10px 3px var(--glow1,rgba(255,81,0,.8)),0 0 22px 8px var(--glow2,rgba(255,81,0,.3))}
+.cur-ring{width:40px;height:40px;margin:-20px 0 0 -20px;border:1.5px solid var(--glow1,#ff5100);box-shadow:0 0 18px var(--glow1,rgba(255,81,0,.5));transition:width .25s,height .25s,margin .25s,background .25s,border-color .25s}
+.cur-ring.big{width:68px;height:68px;margin:-34px 0 0 -34px;background:rgba(255,255,255,.06);border-color:var(--glow2,#ff5100)}
+.cur-ring.press{width:30px;height:30px;margin:-15px 0 0 -15px}
+.cur-trail{width:12px;height:12px;margin:-6px 0 0 -6px;background:radial-gradient(circle,var(--glow2,rgba(255,81,0,.5)),transparent 70%);filter:blur(2px)}
+body.cm-ring .cur-trail,body.cm-crosshair .cur-trail,body.cm-blend .cur-trail,body.cm-spotlight .cur-trail{display:none}
+body.cm-blend .cur-ring{width:90px;height:90px;margin:-45px 0 0 -45px;background:#fff;border:0;mix-blend-mode:difference;box-shadow:none}
+body.cm-blend .cur-dot{display:none}
+body.cm-crosshair .cur-ring{border-radius:0;width:28px;height:28px;margin:-14px 0 0 -14px;border:0;box-shadow:none;background:linear-gradient(var(--glow1),var(--glow1)) center/1px 100% no-repeat,linear-gradient(var(--glow1),var(--glow1)) center/100% 1px no-repeat}
+body.cm-crosshair .cur-dot{width:4px;height:4px;margin:-2px 0 0 -2px;box-shadow:none;background:var(--glow1)}
+body.cm-spotlight .cur-ring,body.cm-spotlight .cur-dot{display:none}
+.spot{position:fixed;inset:0;pointer-events:none;z-index:80;background:radial-gradient(circle 260px at var(--sx,50%) var(--sy,40%),transparent 0,rgba(0,0,0,.55) 100%);display:none}
+body.cm-spotlight .spot{display:block}
+.lightbox{position:fixed;inset:0;background:rgba(0,0,0,.9);display:none;align-items:center;justify-content:center;z-index:100;padding:24px}
+.lightbox.open{display:flex} .lightbox figure{margin:0;max-width:900px;width:100%;text-align:center;color:#fff;font-family:system-ui,sans-serif}
+.lightbox img{max-height:78vh;width:auto;margin:0 auto;border-radius:10px} .lightbox figcaption{margin-top:14px;font-weight:700}
+.lightbox .close{position:absolute;top:18px;right:18px;width:44px;height:44px;border-radius:50%;border:0;background:#fff;color:#111;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.mq{overflow:hidden;white-space:nowrap} .mq>div{display:inline-block;animation:mq 36s linear infinite} .mq.rev>div{animation-direction:reverse}
+@keyframes mq{to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion: reduce){*,*:before,*:after{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}[data-split] .sw>span{transform:none}}
+
+:root{--bg:#0b0a10;--ink:#f4f1ff;--mut:#a39fb5;--a:#ffb020;--m:#ff2e88;--card:#17151f;--glow1:#ffb020;--glow2:rgba(255,46,136,.45);--accent:#ff2e88}
+body{background:var(--bg);color:var(--ink);font-family:"Inter",sans-serif;font-size:15px;line-height:1.55;overflow-x:hidden}
+h1,h2,.logo,.ttl{font-family:"Bebas Neue",sans-serif;font-weight:400;letter-spacing:.02em}
+.top{position:fixed;left:0;right:0;top:0;z-index:50;display:flex;align-items:center;gap:30px;padding:18px 48px;background:linear-gradient(rgba(11,10,16,.9),transparent)}
+.logo{font-size:36px;background:linear-gradient(90deg,var(--a),var(--m));-webkit-background-clip:text;background-clip:text;color:transparent}
+.top nav{display:flex;gap:20px;font-size:14px;color:#ddd} .top nav a:hover{color:#fff} .top .r{margin-left:auto;display:flex;gap:14px;align-items:center}
+.av{width:34px;height:34px;border-radius:6px;background:linear-gradient(135deg,var(--a),var(--m))}
+.bill{position:relative;height:92vh;min-height:600px;display:flex;align-items:center;overflow:hidden}
+.bill .bg{position:absolute;inset:0;background:url(ph-m1.jpg) 85% 20%/auto 115% no-repeat,radial-gradient(circle at 75% 40%,#3a1430,#0b0a10 60%)}
+.bill:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--bg) 25%,rgba(11,10,16,.4) 55%,transparent),linear-gradient(transparent 70%,var(--bg))}
+.bill .c{position:relative;z-index:2;padding:0 48px;max-width:640px}
+.badge{display:inline-flex;gap:8px;align-items:center;font-size:13px;letter-spacing:.2em;font-weight:700;color:var(--a)} .badge i{font-style:normal;background:linear-gradient(135deg,var(--a),var(--m));color:#000;padding:2px 6px;border-radius:3px;letter-spacing:0}
+.bill h1{font-size:clamp(72px,9vw,140px);line-height:.88;margin:12px 0}
+.meta{display:flex;gap:12px;align-items:center;font-size:14px;color:#ddd;margin-bottom:14px} .meta .m{color:#4ade80;font-weight:700} .meta .r{border:1px solid #777;padding:0 6px;font-size:12px}
+.bill p{font-size:17px;color:#ddd}
+.btns{display:flex;gap:12px;margin-top:24px} .bt{display:inline-flex;gap:10px;align-items:center;padding:12px 26px;border-radius:6px;font-weight:700;font-size:16px} .bt.w{background:#fff;color:#000} .bt.g{background:rgba(120,120,140,.45);color:#fff;backdrop-filter:blur(6px)}
+.bt svg{width:20px;height:20px}
+.rowx{padding:10px 0 26px;position:relative;z-index:3} .rowx h2{font-size:30px;padding:0 48px;margin-bottom:10px} .rowx h2 small{font-family:"Inter";font-size:13px;color:var(--a);margin-left:10px;letter-spacing:0}
+.rail{display:flex;gap:10px;overflow-x:auto;padding:16px 48px 30px;scroll-snap-type:x mandatory;scrollbar-width:none} .rail::-webkit-scrollbar{display:none}
+.tile{flex:0 0 280px;aspect-ratio:16/9;border-radius:8px;position:relative;scroll-snap-align:start;transition:transform .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s;cursor:pointer;background-size:cover;background-position:center;overflow:visible}
+.tile:hover{transform:scale(1.18);z-index:5;box-shadow:0 20px 40px rgba(0,0,0,.6)}
+.tile .ov{position:absolute;inset:0;border-radius:8px;background:linear-gradient(transparent 40%,rgba(0,0,0,.85));display:flex;flex-direction:column;justify-content:flex-end;padding:12px}
+.tile .ttl{font-size:22px;line-height:1} .tile .sub{font-size:12px;color:#ddd;opacity:0;max-height:0;transition:all .3s} .tile:hover .sub{opacity:1;max-height:60px;margin-top:4px}
+.tile .tag{position:absolute;top:8px;left:8px;font-size:10px;font-weight:800;padding:3px 6px;border-radius:3px;background:linear-gradient(135deg,var(--a),var(--m));color:#000}
+.tile.top10{flex:0 0 330px;aspect-ratio:auto;height:190px;display:flex;align-items:stretch;background:none} .top10 .num{font-family:"Bebas Neue";font-size:200px;line-height:.8;color:var(--bg);-webkit-text-stroke:3px #5a5670;width:120px;text-align:right;margin-right:-14px;position:relative;z-index:0}
+.top10 .poster{flex:1;border-radius:8px;background:linear-gradient(160deg,#2a1b3a,#140f1f);display:flex;flex-direction:column;justify-content:flex-end;padding:14px;position:relative;z-index:1} .top10 b{font-family:"Bebas Neue";font-size:44px;line-height:1;font-weight:400;background:linear-gradient(90deg,var(--a),var(--m));-webkit-background-clip:text;background-clip:text;color:transparent} .top10 span{font-size:13px;color:#ccc}
+.ep{display:grid;gap:10px;padding:0 48px;max-width:1100px} .epi{display:grid;grid-template-columns:40px 200px 1fr 90px;gap:18px;align-items:center;padding:16px;border-radius:8px;background:var(--card);transition:background .2s} .epi:hover{background:#221f2d}
+.epi .n{font-size:26px;color:var(--mut);text-align:center} .epi .th{aspect-ratio:16/9;border-radius:6px;background-size:cover;background-position:center;position:relative} .epi .th:after{content:"\25B6";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:22px;color:#fff;opacity:0;transition:opacity .2s;background:rgba(0,0,0,.4);border-radius:6px} .epi:hover .th:after{opacity:1}
+.epi h3{font-size:17px;margin:0} .epi p{color:var(--mut);font-size:14px} .epi .d{color:var(--mut);font-size:13px;text-align:right}
+.seasons{display:flex;gap:10px;padding:0 48px;margin-bottom:14px} .seasons span{border:1px solid #444;border-radius:4px;padding:6px 12px;font-size:13px} .seasons span:first-child{background:#fff;color:#000;border-color:#fff}
+.contact{margin:50px 48px 30px;border-radius:14px;padding:46px;background:linear-gradient(120deg,#2a1230,#1a1426 60%,#2b1a08);display:grid;grid-template-columns:1fr 1fr;gap:40px} .contact h2{font-size:70px;line-height:.9}
+#contactForm{display:grid;gap:10px} #contactForm input,#contactForm textarea{background:rgba(0,0,0,.35);border:1px solid #3a3550;border-radius:6px;padding:12px;color:#fff;font:inherit} #contactForm textarea{min-height:90px} #contactForm button{background:linear-gradient(90deg,var(--a),var(--m));color:#000;border:0;border-radius:6px;padding:13px;font-weight:800;cursor:pointer;justify-content:center;gap:8px}
+.foot{padding:20px 48px 40px;color:var(--mut);font-size:13px}
+@media(max-width:860px){.top nav{display:none}.top,.bill .c,.rowx h2,.rail,.ep,.seasons{padding-left:20px;padding-right:20px}.epi{grid-template-columns:1fr}.contact{grid-template-columns:1fr;margin:30px 20px}.bill .bg{background-size:auto 70%;background-position:center bottom}}
+
+</style>
+</head>
+<body data-cursor="glow">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-in" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></symbol>
+  <symbol id="i-gh" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></symbol>
+  <symbol id="i-down" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/><path d="M12 15V3"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+</svg>
+<div id="progress"></div>
+<header class="top"><span class="logo">ALEX MORGAN</span><nav><a href="#top">Home</a><a href="#episodes">Experience</a><a href="#projects">Projects</a><a href="#awards">Awards</a><a href="#contact">Contact</a></nav><div class="r"><svg class="ico"><use href="#i-mail"/></svg><span class="av"></span></div></header>
+<main id="top"><section class="bill"><div class="bg"></div><div class="c"><div class="badge reveal"><i>A</i> ORIGINAL &middot; CAREER SERIES</div><h1 class="reveal" data-split>The Growth<br>Story</h1>
+<div class="meta reveal"><span class="m">98% match for your team</span><span>2014 &ndash; 2026</span><span class="r">12+ yrs</span><span>4 seasons</span></div>
+<p class="reveal">A growth leader turns quiet markets into ₹4.2 Cr of revenue and a team of 15 into 40. Starring Alex Morgan, Head of Growth at Acme Corp.</p>
+<div class="btns reveal"><a class="bt w magnetic" href="#episodes"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4v16l13-8z"/></svg> Watch career</a><a class="bt g magnetic" href="#"><svg class="ico"><use href="#i-down"/></svg> Resume</a></div></div></section>
+<section class="rowx"><h2>Top 5 numbers <small>this career</small></h2><div class="rail"><div class="tile top10 reveal"><div class="num">1</div><div class="poster"><b>₹4.2Cr</b><span>Revenue led</span></div></div><div class="tile top10 reveal"><div class="num">2</div><div class="poster"><b>128%</b><span>Target</span></div></div><div class="tile top10 reveal"><div class="num">3</div><div class="poster"><b>40</b><span>Team built</span></div></div><div class="tile top10 reveal"><div class="num">4</div><div class="poster"><b>120+</b><span>Accounts</span></div></div><div class="tile top10 reveal"><div class="num">5</div><div class="poster"><b>12</b><span>Years</span></div></div></div></section>
+<section class="rowx" id="projects"><h2>Projects &amp; case studies</h2><div class="rail"><div class="tile reveal" style="background-image:url(cover-1.jpg)"><span class="tag">NEW</span><div class="ov"><div class="ttl">Revenue Blueprint</div><div class="sub">Strategy deck · 90-day roadmap</div></div></div><div class="tile reveal" style="background-image:url(cover-2.jpg)"><div class="ov"><div class="ttl">Territory Expansion</div><div class="sub">3 cities, ₹80L ARR in a year</div></div></div><div class="tile reveal" style="background-image:url(cover-3.jpg)"><span class="tag">TOP</span><div class="ov"><div class="ttl">Pricing Study</div><div class="sub">ARPU +22% without churn</div></div></div><div class="tile reveal" style="background-image:url(cover-4.jpg)"><div class="ov"><div class="ttl">Sales Dashboard</div><div class="sub">Daily KPI cockpit for 40 reps</div></div></div><div class="tile reveal" style="background-image:url(cover-6.jpg)"><div class="ov"><div class="ttl">Playbook 2.0</div><div class="sub">Onboarding cut to 30 days</div></div></div></div></section>
+<section class="rowx" id="episodes"><h2>Episodes <small>experience</small></h2><div class="seasons"><span>All seasons</span><span>Leadership</span><span>Individual contributor</span></div><div class="ep"><div class="epi reveal"><div class="n">1</div><div class="th" style="background-image:url(cover-5.jpg)"></div><div><h3>Head of Growth · Acme Corp</h3><p>Built a 40-member team and a ₹4.2 Cr book. Win rate +18%.</p></div><div class="d">2024 – now</div></div><div class="epi reveal"><div class="n">2</div><div class="th" style="background-image:url(cover-7.jpg)"></div><div><h3>Regional Sales Manager · Nimbus</h3><p>Opened 3 territories, 60+ logos; 128% of target.</p></div><div class="d">2021 – 23</div></div><div class="epi reveal"><div class="n">3</div><div class="th" style="background-image:url(cover-8.jpg)"></div><div><h3>Key Account Manager · Orbit Labs</h3><p>Managed 35 strategic accounts; 2.1x account growth.</p></div><div class="d">2018 – 21</div></div><div class="epi reveal"><div class="n">4</div><div class="th" style="background-image:url(cover-2.jpg)"></div><div><h3>Business Development · Vertex</h3><p>Top 5% nationally; 150+ SMB customers won.</p></div><div class="d">2014 – 18</div></div></div></section>
+<section class="rowx" id="awards"><h2>Award winners</h2><div class="rail"><div class="tile reveal" data-src="award-1.jpg" style="background-image:url(award-1.jpg)"><div class="ov"><div class="ttl">President's Club</div><div class="sub">Acme Corp · 2025</div></div></div><div class="tile reveal" data-src="award-2.jpg" style="background-image:url(award-2.jpg)"><div class="ov"><div class="ttl">Top Regional Manager</div><div class="sub">Nimbus · 2023</div></div></div><div class="tile reveal" data-src="award-3.jpg" style="background-image:url(award-3.jpg)"><div class="ov"><div class="ttl">Excellence Award</div><div class="sub">Nimbus · 2022</div></div></div><div class="tile reveal" data-src="award-4.jpg" style="background-image:url(award-4.jpg)"><div class="ov"><div class="ttl">Key Account Champion</div><div class="sub">Orbit Labs · 2020</div></div></div><div class="tile reveal" data-src="award-5.jpg" style="background-image:url(award-5.jpg)"><div class="ov"><div class="ttl">National Top 5%</div><div class="sub">Vertex · 2017</div></div></div></div></section>
+<section class="rowx"><h2>Because you like AI <small>toolkit</small></h2><div class="rail"><div class="tile reveal" style="background:linear-gradient(135deg,#3b1d4a,#15121c)"><div class="ov"><div class="ttl">ChatGPT</div><div class="sub">Research & writing</div></div></div><div class="tile reveal" style="background:linear-gradient(135deg,#4a2a10,#15121c)"><div class="ov"><div class="ttl">Claude</div><div class="sub">Analysis & dashboards</div></div></div><div class="tile reveal" style="background:linear-gradient(135deg,#10324a,#15121c)"><div class="ov"><div class="ttl">Gemini</div><div class="sub">Research & docs</div></div></div><div class="tile reveal" style="background:linear-gradient(135deg,#1c3a22,#15121c)"><div class="ov"><div class="ttl">NotebookLM</div><div class="sub">Notes & synthesis</div></div></div><div class="tile reveal" style="background:linear-gradient(135deg,#45122a,#15121c)"><div class="ov"><div class="ttl">Perplexity</div><div class="sub">Market research</div></div></div><div class="tile reveal" style="background:linear-gradient(135deg,#2a2a4a,#15121c)"><div class="ov"><div class="ttl">Microsoft Copilot</div><div class="sub">Office workflows</div></div></div></div></section>
+<section class="contact" id="contact"><div class="reveal"><h2>Coming soon:<br>your team.</h2><p style="color:#ccc;margin-top:12px">alex@example.com &middot; Mumbai &middot; LinkedIn</p></div><div class="reveal"><form id="contactForm" data-to="alex@example.com"><input id="fName" placeholder="Your name" required /><input id="fCompany" placeholder="Company" /><textarea id="fMsg" placeholder="Pitch me the next season" required></textarea><button type="submit" class="magnetic">Start streaming <svg class="ico"><use href="#i-arrow"/></svg></button></form></div></section>
+<div class="foot">&copy; 2026 Alex Morgan. An original career series. Not affiliated with any streaming service.</div></main>
+<div class="spot"></div><div class="cur cur-trail"></div><div class="cur cur-trail"></div><div class="cur cur-trail"></div><div class="cur cur-trail"></div><div class="cur cur-trail"></div><div class="cur cur-trail"></div><div class="cur cur-ring" id="curRing"></div><div class="cur cur-dot" id="curDot"></div>
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true"><button class="close" id="lbClose" aria-label="Close"><svg class="ico"><use href="#i-x"/></svg></button><figure><img id="lbImg" src="" alt="" /><figcaption id="lbCap"></figcaption></figure></div>
+<script>
+/* Portfolio motion engine v2 - ES5, no dependencies */
+(function () {
+  var d = document, w = window;
+  function $(id) { return d.getElementById(id); }
+  function all(s) { return d.querySelectorAll(s); }
+  var canHover = w.matchMedia && w.matchMedia("(hover: hover) and (pointer: fine)").matches;
+  var reduce = w.matchMedia && w.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* mobile menu */
+  var burger = $("burger"), mm = $("mobileMenu");
+  if (burger && mm) {
+    burger.addEventListener("click", function () { mm.classList.toggle("open"); });
+    var ml = mm.getElementsByTagName("a");
+    for (var i = 0; i < ml.length; i++) { ml[i].addEventListener("click", function () { mm.classList.remove("open"); }); }
+  }
+
+  /* split text into words for staggered reveal */
+  var splits = all("[data-split]");
+  for (var s = 0; s < splits.length; s++) {
+    var el = splits[s], html = el.innerHTML, parts = html.split(/(<[^>]+>|\s+)/), out = "", idx = 0;
+    for (var p = 0; p < parts.length; p++) {
+      var t = parts[p];
+      if (!t) { continue; }
+      if (t.charAt(0) === "<" || /^\s+$/.test(t)) { out += t; }
+      else { out += '<span class="sw"><span style="transition-delay:' + (idx * 0.05).toFixed(2) + 's">' + t + "</span></span>"; idx++; }
+    }
+    el.innerHTML = out;
+  }
+
+  /* count-up: animates the first number found in the text */
+  function countUp(el) {
+    if (el.children.length) {
+      var leaves = el.querySelectorAll("*"), i, hit = null;
+      for (i = 0; i < leaves.length; i++) { if (!leaves[i].children.length && /\d/.test(leaves[i].textContent)) { hit = leaves[i]; break; } }
+      if (!hit) { return; }
+      el = hit;
+    }
+    var txt = el.getAttribute("data-final") || el.textContent, m = txt.match(/(\d+(?:[.,]\d+)?)/);
+    if (!m || reduce) { return; }
+    el.setAttribute("data-final", txt);
+    var num = parseFloat(m[1].replace(",", ".")), dec = (m[1].split(/[.,]/)[1] || "").length, pre = txt.slice(0, m.index), post = txt.slice(m.index + m[1].length), t0 = null;
+    function step(ts) {
+      if (!t0) { t0 = ts; }
+      var k = Math.min(1, (ts - t0) / 1400), e = 1 - Math.pow(1 - k, 3);
+      el.textContent = pre + (num * e).toFixed(dec) + post;
+      if (k < 1) { w.requestAnimationFrame(step); } else { el.textContent = txt; }
+    }
+    w.requestAnimationFrame(step);
+  }
+
+  /* text scramble */
+  function scramble(el) {
+    if (reduce) { return; }
+    var final = el.getAttribute("data-final") || el.textContent, chars = "!<>-_\\/[]{}=+*^?#ABCDEFX0123456789", frame = 0;
+    el.setAttribute("data-final", final);
+    var iv = setInterval(function () {
+      var o = "";
+      for (var c = 0; c < final.length; c++) { o += (c < frame / 2 || final.charAt(c) === " ") ? final.charAt(c) : chars.charAt(Math.floor(Math.random() * chars.length)); }
+      el.textContent = o; frame++;
+      if (frame / 2 > final.length) { clearInterval(iv); el.textContent = final; }
+    }, 30);
+  }
+
+  /* typewriter */
+  function typeIt(el) {
+    var full = el.getAttribute("data-final") || el.textContent, n = 0;
+    el.setAttribute("data-final", full);
+    if (reduce) { return; }
+    el.textContent = "";
+    var iv = setInterval(function () { n++; el.textContent = full.slice(0, n); if (n >= full.length) { clearInterval(iv); } }, 38);
+  }
+
+  function onIn(el) {
+    el.classList.add("in");
+    var c = el.querySelectorAll("[data-count]"), sc = el.querySelectorAll("[data-scramble]"), ty = el.querySelectorAll("[data-type]");
+    if (el.hasAttribute("data-count")) { countUp(el); }
+    if (el.hasAttribute("data-scramble")) { scramble(el); }
+    if (el.hasAttribute("data-type")) { typeIt(el); }
+    for (var a = 0; a < c.length; a++) { countUp(c[a]); }
+    for (var b = 0; b < sc.length; b++) { scramble(sc[b]); }
+    for (var e = 0; e < ty.length; e++) { typeIt(ty[e]); }
+  }
+  var rv = all(".reveal");
+  if ("IntersectionObserver" in w) {
+    var io = new IntersectionObserver(function (en) {
+      for (var j = 0; j < en.length; j++) { if (en[j].isIntersecting) { onIn(en[j].target); io.unobserve(en[j].target); } }
+    }, { threshold: 0.12 });
+    for (var k = 0; k < rv.length; k++) { io.observe(rv[k]); }
+  } else { d.documentElement.className += " no-io"; for (var k2 = 0; k2 < rv.length; k2++) { rv[k2].classList.add("in"); } }
+
+  /* rotating words */
+  var rots = all("[data-rotate]");
+  for (var r = 0; r < rots.length; r++) {
+    (function (el) {
+      var words = el.getAttribute("data-rotate").split("|"), n = 0;
+      if (words.length < 2 || reduce) { return; }
+      setInterval(function () {
+        el.classList.add("out");
+        setTimeout(function () { n = (n + 1) % words.length; el.textContent = words[n]; el.classList.remove("out"); }, 350);
+      }, 2400);
+    })(rots[r]);
+  }
+
+  /* scroll progress + horizontal scroll sections + scroll-linked vars */
+  var prog = $("progress"), hs = all("[data-hscroll]");
+  function onScroll() {
+    var y = w.pageYOffset || d.documentElement.scrollTop, h = d.documentElement.scrollHeight - w.innerHeight;
+    if (prog) { prog.style.transform = "scaleX(" + (h > 0 ? y / h : 0).toFixed(4) + ")"; }
+    d.documentElement.style.setProperty("--scroll", (h > 0 ? y / h : 0).toFixed(4));
+    for (var q = 0; q < hs.length; q++) {
+      var sec = hs[q], track = sec.querySelector(".htrack");
+      if (!track || w.innerWidth < 900) { if (track) { track.style.transform = ""; } continue; }
+      var top = sec.getBoundingClientRect().top, dist = track.scrollWidth - w.innerWidth + 80;
+      sec.style.height = (dist + w.innerHeight) + "px";
+      var pr = Math.min(1, Math.max(0, -top / dist));
+      track.style.transform = "translateX(" + (-pr * dist).toFixed(1) + "px)";
+    }
+  }
+  w.addEventListener("scroll", onScroll); w.addEventListener("resize", onScroll); onScroll();
+
+  if (canHover && !reduce) {
+    /* tilt */
+    var tilts = all(".tilt");
+    for (var t = 0; t < tilts.length; t++) {
+      (function (el) {
+        var max = parseFloat(el.getAttribute("data-max")) || 8;
+        el.addEventListener("mousemove", function (e) {
+          var b = el.getBoundingClientRect(), x = (e.clientX - b.left) / b.width, y = (e.clientY - b.top) / b.height;
+          el.style.transition = "transform .12s ease-out";
+          el.style.transform = "perspective(900px) rotateX(" + ((0.5 - y) * max).toFixed(2) + "deg) rotateY(" + ((x - 0.5) * max).toFixed(2) + "deg) translateZ(6px)";
+          el.style.setProperty("--mx", (x * 100).toFixed(1) + "%"); el.style.setProperty("--my", (y * 100).toFixed(1) + "%");
+          el.classList.add("hovering");
+        });
+        el.addEventListener("mouseleave", function () { el.style.transition = "transform .6s cubic-bezier(.2,.7,.2,1)"; el.style.transform = ""; el.classList.remove("hovering"); });
+      })(tilts[t]);
+    }
+    /* magnetic */
+    var mags = all(".magnetic");
+    for (var g = 0; g < mags.length; g++) {
+      (function (el) {
+        el.addEventListener("mousemove", function (e) {
+          var b = el.getBoundingClientRect(), x = e.clientX - b.left - b.width / 2, y = e.clientY - b.top - b.height / 2;
+          el.style.transform = "translate(" + (x * 0.3).toFixed(1) + "px," + (y * 0.4).toFixed(1) + "px)";
+        });
+        el.addEventListener("mouseleave", function () { el.style.transform = ""; });
+      })(mags[g]);
+    }
+    /* parallax stage */
+    var pz = d.querySelector("[data-parallax]"), stage = $("stage");
+    if (pz && stage) {
+      pz.addEventListener("mousemove", function (e) {
+        var b = pz.getBoundingClientRect(), x = (e.clientX - b.left) / b.width - 0.5, y = (e.clientY - b.top) / b.height - 0.5;
+        stage.style.transform = "rotateY(" + (x * 16).toFixed(2) + "deg) rotateX(" + (-y * 12).toFixed(2) + "deg)";
+      });
+      pz.addEventListener("mouseleave", function () { stage.style.transform = ""; });
+    }
+    /* cursor variants: body[data-cursor] = glow | ring | spotlight | crosshair | blend */
+    var mode = d.body.getAttribute("data-cursor") || "glow";
+    var dot = $("curDot"), ring = $("curRing"), trails = all(".cur-trail");
+    var mx = -200, my = -200, dx = -200, dy = -200, rx = -200, ry = -200, tp = [];
+    d.body.className += " has-cur cm-" + mode;
+    for (var q2 = 0; q2 < trails.length; q2++) { tp.push({ x: -200, y: -200 }); }
+    d.addEventListener("mousemove", function (e) {
+      mx = e.clientX; my = e.clientY;
+      d.documentElement.style.setProperty("--sx", mx + "px"); d.documentElement.style.setProperty("--sy", my + "px");
+    });
+    if (ring) {
+      d.addEventListener("mousedown", function () { ring.classList.add("press"); });
+      d.addEventListener("mouseup", function () { ring.classList.remove("press"); });
+      var hot = all("a, button, .tilt, input, textarea");
+      for (var h = 0; h < hot.length; h++) {
+        hot[h].addEventListener("mouseenter", function () { ring.classList.add("big"); });
+        hot[h].addEventListener("mouseleave", function () { ring.classList.remove("big"); });
+      }
+    }
+    var loop = function () {
+      dx += (mx - dx) * 0.35; dy += (my - dy) * 0.35; rx += (mx - rx) * 0.15; ry += (my - ry) * 0.15;
+      if (dot) { dot.style.transform = "translate(" + dx + "px," + dy + "px)"; }
+      if (ring) { ring.style.transform = "translate(" + rx + "px," + ry + "px)"; }
+      var px = dx, py = dy;
+      for (var n = 0; n < tp.length; n++) {
+        tp[n].x += (px - tp[n].x) * 0.45; tp[n].y += (py - tp[n].y) * 0.45;
+        trails[n].style.transform = "translate(" + tp[n].x + "px," + tp[n].y + "px) scale(" + (1 - n * 0.13) + ")";
+        trails[n].style.opacity = (0.75 - n * 0.11).toFixed(2); px = tp[n].x; py = tp[n].y;
+      }
+      w.requestAnimationFrame(loop);
+    };
+    w.requestAnimationFrame(loop);
+  }
+
+  /* lightbox */
+  var lb = $("lightbox"), lbImg = $("lbImg"), lbCap = $("lbCap");
+  if (lb) {
+    var aw = all("[data-src]");
+    for (var a = 0; a < aw.length; a++) {
+      aw[a].addEventListener("click", function () {
+        lbImg.src = this.getAttribute("data-src");
+        var c1 = this.querySelector("b"), s1 = this.querySelector("small");
+        lbCap.textContent = (c1 ? c1.textContent : "") + (s1 ? " · " + s1.textContent : "");
+        lb.classList.add("open");
+      });
+    }
+    var closeLb = function () { lb.classList.remove("open"); lbImg.src = ""; };
+    $("lbClose").addEventListener("click", closeLb);
+    lb.addEventListener("click", function (e) { if (e.target === lb) { closeLb(); } });
+    d.addEventListener("keydown", function (e) { if (e.keyCode === 27) { closeLb(); } });
+  }
+  /* contact form -> mailto */
+  var form = $("contactForm");
+  if (form) {
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var n1 = $("fName").value, c2 = $("fCompany").value, m1 = $("fMsg").value;
+      w.location.href = "mailto:" + form.getAttribute("data-to") + "?subject=" + encodeURIComponent("Portfolio enquiry from " + n1 + (c2 ? " (" + c2 + ")" : "")) + "&body=" + encodeURIComponent(m1 + "\n\n" + n1);
+    });
+  }
+})();
+</script>
+
+<style>
+html::after{content:"";position:fixed;left:0;top:0;right:0;bottom:0;pointer-events:none;z-index:2147483645;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='420' height='260'%3E%3Ctext x='20' y='150' transform='rotate(-24 210 130)' font-family='Arial,sans-serif' font-size='22' font-weight='700' fill='%23888' fill-opacity='.22'%3EPREVIEW %E2%80%A2 FOLIOCRAFT%3C/text%3E%3C/svg%3E")}
+.fc-bar{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:2147483644;display:flex;gap:12px;align-items:center;padding:9px 10px 9px 16px;border-radius:999px;background:rgba(10,10,14,.92);color:#fff;font:600 13px/1 system-ui,sans-serif;box-shadow:0 10px 30px rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.12);white-space:nowrap}
+.fc-bar a{background:#d4ff3a;color:#000!important;padding:8px 12px;border-radius:999px;text-decoration:none}
+@media (max-width:520px){.fc-bar{font-size:11px;bottom:10px}.fc-bar span{display:none}}
+</style>
+<script>
+(function () {
+  var d = document;
+  function bar() {
+    if (d.querySelector(".fc-bar")) { return; }
+    var b = d.createElement("div"); b.className = "fc-bar";
+    b.innerHTML = "Preview &middot; demo content <span>&middot; watermark removed after purchase</span><a href='index.html#pricing'>Get this theme</a>";
+    d.body.appendChild(b);
+  }
+  bar();
+  if (window.MutationObserver) { new MutationObserver(bar).observe(d.body, { childList: true }); }
+})();
+</script>
+<script>
+/* Foliocraft content protection: deterrents only (no website can fully block screenshots). */
+(function () {
+  var d = document, w = window, sh, tm;
+  var css = "html,body{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}input,textarea,select,[contenteditable]{-webkit-user-select:text;user-select:text}img{-webkit-user-drag:none}" +
+    "@media print{html,body{display:none!important}}" +
+    ".fc-shield{position:fixed;left:0;top:0;right:0;bottom:0;background:#07070a;z-index:2147483646;display:none;align-items:center;justify-content:center;color:#d4ff3a;font:600 16px/1.5 system-ui,sans-serif;text-align:center;padding:24px}.fc-shield.on{display:flex}";
+  var st = d.createElement("style"); st.appendChild(d.createTextNode(css)); d.head.appendChild(st);
+  function shield(on, ms) {
+    if (!sh) { sh = d.createElement("div"); sh.className = "fc-shield"; sh.innerHTML = "Protected preview &middot; Foliocraft"; d.body.appendChild(sh); }
+    sh.className = on ? "fc-shield on" : "fc-shield";
+    clearTimeout(tm); if (on && ms) { tm = setTimeout(function () { shield(false); }, ms); }
+  }
+  d.addEventListener("contextmenu", function (e) { e.preventDefault(); });
+  d.addEventListener("dragstart", function (e) { if (e.target && e.target.tagName === "IMG") { e.preventDefault(); } });
+  d.addEventListener("copy", function (e) { var t = e.target; if (!(t && (t.tagName === "INPUT" || t.tagName === "TEXTAREA"))) { e.preventDefault(); } });
+  d.addEventListener("keydown", function (e) {
+    var k = (e.key || "").toLowerCase(), c = e.ctrlKey || e.metaKey;
+    if (k === "printscreen" || k === "f12" || (c && (k === "s" || k === "u" || k === "p")) || (c && e.shiftKey && (k === "i" || k === "j" || k === "c" || k === "s" || k === "3" || k === "4" || k === "5"))) {
+      e.preventDefault(); shield(true, 1800);
+    }
+  });
+  d.addEventListener("keyup", function (e) {
+    if ((e.key || "").toLowerCase() === "printscreen") { shield(true, 1800); try { navigator.clipboard.writeText("Protected preview - foliocraft"); } catch (x) {} }
+  });
+  w.addEventListener("blur", function () { shield(true); });
+  w.addEventListener("focus", function () { setTimeout(function () { shield(false); }, 250); });
+  d.addEventListener("visibilitychange", function () { if (d.hidden) { shield(true); } });
+})();
+</script>
+</body>
+</html>

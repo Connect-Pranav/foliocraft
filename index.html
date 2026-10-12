@@ -1,0 +1,741 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Foliocraft | 24 Premium Portfolio Themes, Built From Your Resume</title>
+<meta name="description" content="Upload your resume and photo. Claude picks the 4 best of 24 premium portfolio themes for your profession and builds your website. Free hosting, change anything in chat." />
+<link rel="icon" href="favicon.png" type="image/png" />
+<style>
+@font-face{font-family:"Bricolage";src:url(bricolage-grotesque-latin-wght-normal.woff2) format("woff2");font-weight:200 800;font-display:swap}
+@font-face{font-family:"Inter";src:url(inter-latin-wght-normal.woff2) format("woff2");font-weight:100 900;font-display:swap}
+@font-face{font-family:"Mono";src:url(jetbrains-mono-latin-wght-normal.woff2) format("woff2");font-weight:100 800;font-display:swap}
+:root{--bg:#07070a;--bg2:#0e0e14;--card:#13131b;--line:#23232f;--ink:#f4f4f6;--mut:#9a9aab;--a:#d4ff3a;--b:#8b5cf6;--c:#ff5b8a;--r:20px}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font:16px/1.6 "Inter",system-ui,sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+h1,h2,h3{font-family:"Bricolage",sans-serif;letter-spacing:-.035em;line-height:1.02;font-weight:700}
+.wrap{max-width:1240px;margin:0 auto;padding:0 28px}
+.eyebrow{font:600 12px/1 "Mono",monospace;letter-spacing:.18em;text-transform:uppercase;color:var(--a)}
+.grad{background:linear-gradient(100deg,var(--a),#7dffb0 40%,var(--b) 75%,var(--c));-webkit-background-clip:text;background-clip:text;color:transparent}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:15px 26px;border-radius:999px;font-weight:700;font-size:15px;transition:transform .25s,box-shadow .25s,background .25s;cursor:pointer;border:0;font-family:inherit}
+.btn.p{background:var(--a);color:#0a0a0a;box-shadow:0 10px 40px -10px rgba(212,255,58,.6)}
+.btn.p:hover{transform:translateY(-2px);box-shadow:0 18px 50px -12px rgba(212,255,58,.8)}
+.btn.g{background:rgba(255,255,255,.06);border:1px solid var(--line);color:var(--ink)}
+.btn.g:hover{background:rgba(255,255,255,.12)}
+.btn svg{width:18px;height:18px}
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--a),var(--b),var(--c));z-index:100}
+
+/* nav */
+nav{position:fixed;top:16px;left:50%;transform:translateX(-50%);z-index:50;display:flex;align-items:center;gap:26px;padding:10px 10px 10px 22px;border-radius:999px;background:rgba(14,14,20,.7);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--line);width:max-content;max-width:calc(100% - 32px)}
+.logo{display:flex;align-items:center;gap:9px;font:800 19px/1 "Bricolage",sans-serif;letter-spacing:-.03em}
+.logo i{width:22px;height:22px;border-radius:7px;background:conic-gradient(from 200deg,var(--a),var(--b),var(--c),var(--a));display:inline-block;transform:rotate(12deg)}
+nav .links{display:flex;gap:22px;font-size:14px;color:var(--mut)}
+nav .links a:hover{color:var(--ink)}
+nav .btn{padding:10px 18px;font-size:14px}
+
+/* hero */
+.hero{position:relative;padding:128px 0 30px;overflow:hidden}
+.hero:before{content:"";position:absolute;inset:-20%;background:radial-gradient(40% 35% at 20% 20%,rgba(139,92,246,.28),transparent 70%),radial-gradient(35% 30% at 85% 30%,rgba(212,255,58,.14),transparent 70%),radial-gradient(40% 40% at 60% 90%,rgba(255,91,138,.16),transparent 70%);pointer-events:none}
+.hero .grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:64px 64px;-webkit-mask-image:radial-gradient(ellipse at 50% 30%,#000 30%,transparent 75%);mask-image:radial-gradient(ellipse at 50% 30%,#000 30%,transparent 75%)}
+.hero .txt{position:relative;text-align:center;max-width:980px;margin:0 auto;padding:0 24px;z-index:3}
+.pill{display:inline-flex;align-items:center;gap:10px;padding:7px 14px 7px 8px;border-radius:999px;background:rgba(255,255,255,.05);border:1px solid var(--line);font-size:13px;color:var(--mut);margin-bottom:20px}
+.pill b{background:var(--a);color:#000;border-radius:999px;padding:3px 9px;font-size:11px;letter-spacing:.04em}
+.hero h1{font-size:clamp(40px,6vw,86px)}
+.hero p.sub{font-size:clamp(16px,1.4vw,18px);color:var(--mut);max-width:620px;margin:18px auto 26px}
+.hero .ctas{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+
+/* 3D ring */
+.stage{position:relative;height:420px;margin-top:10px;perspective:1600px;perspective-origin:50% 30%;z-index:2}
+.ring{position:absolute;left:50%;top:40px;width:0;height:0;transform-style:preserve-3d;transform:rotateX(-8deg) rotateY(0deg)}
+.ring .sc{position:absolute;width:300px;height:188px;left:-150px;top:0;border-radius:14px;overflow:hidden;background:#111 center/cover no-repeat;border:1px solid rgba(255,255,255,.12);box-shadow:0 30px 60px -20px rgba(0,0,0,.8);-webkit-box-reflect:below 10px linear-gradient(transparent 60%,rgba(255,255,255,.18));backface-visibility:hidden;cursor:pointer;transition:filter .3s}
+.ring .sc span{position:absolute;left:10px;bottom:10px;font:600 11px/1 "Mono",monospace;background:rgba(0,0,0,.7);padding:6px 8px;border-radius:6px;letter-spacing:.04em}
+.ring .sc:hover{filter:brightness(1.15)}
+.floor{position:absolute;left:50%;top:310px;width:1200px;height:300px;margin-left:-600px;background:radial-gradient(ellipse at center,rgba(139,92,246,.35),transparent 65%);transform:rotateX(80deg);filter:blur(10px)}
+.hint{position:relative;z-index:3;text-align:center;font:500 12px/1 "Mono",monospace;color:var(--mut);letter-spacing:.12em;margin-top:-10px}
+
+/* marquee */
+.marq{border-block:1px solid var(--line);padding:18px 0;overflow:hidden;white-space:nowrap;background:var(--bg2)}
+.marq div{display:inline-block;animation:mq 40s linear infinite;font:600 15px/1 "Bricolage",sans-serif;color:var(--mut)}
+.marq span{margin:0 26px}.marq span:nth-child(3n){color:var(--a)}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+section{padding:120px 0;position:relative}
+.head{max-width:760px;margin-bottom:56px}
+.head h2{font-size:clamp(36px,5vw,64px);margin:14px 0 16px}
+.head p{color:var(--mut);font-size:18px}
+
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;perspective:1200px}
+.step{background:linear-gradient(160deg,#17171f,#0f0f15);border:1px solid var(--line);border-radius:var(--r);padding:28px;min-height:270px;position:relative;overflow:hidden;transform-style:preserve-3d;transition:transform .2s}
+.step .n{font:700 64px/1 "Bricolage",sans-serif;color:transparent;-webkit-text-stroke:1.5px #3a3a4a;margin-bottom:26px}
+.step h3{font-size:22px;margin-bottom:10px}
+.step p{color:var(--mut);font-size:15px}
+.step .ic{position:absolute;right:22px;top:24px;width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:rgba(212,255,58,.1);color:var(--a);transform:translateZ(40px)}
+.step .ic svg{width:22px;height:22px}
+
+/* finder */
+.finder{display:grid;grid-template-columns:420px 1fr;gap:28px;align-items:start}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:28px;position:sticky;top:100px}
+.panel label{display:block;font-size:13px;color:var(--mut);margin:18px 0 8px}
+.panel label:first-of-type{margin-top:0}
+.panel input,.panel select{width:100%;background:#0b0b10;border:1px solid var(--line);border-radius:12px;color:var(--ink);font:inherit;padding:14px 16px;outline:none;transition:border-color .2s}
+.panel input:focus,.panel select:focus{border-color:var(--a)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.chips button{background:rgba(255,255,255,.05);border:1px solid var(--line);color:var(--mut);border-radius:999px;padding:7px 12px;font:500 13px/1 "Inter";cursor:pointer;transition:all .2s}
+.chips button:hover,.chips button.on{border-color:var(--a);color:var(--ink)}
+.seg{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;background:#0b0b10;border:1px solid var(--line);border-radius:12px;padding:5px}
+.seg button{background:none;border:0;color:var(--mut);padding:10px;border-radius:8px;font:600 13px/1 "Inter";cursor:pointer}
+.seg button.on{background:var(--ink);color:#000}
+.panel .btn{width:100%;justify-content:center;margin-top:22px}
+.results{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.res{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;opacity:0;transform:translateY(20px) rotateX(8deg);transition:opacity .5s,transform .5s;cursor:pointer}
+.res.in{opacity:1;transform:none}
+.res .im{aspect-ratio:16/10;background:#111 center/cover;position:relative}
+.res .rk{position:absolute;left:12px;top:12px;background:var(--a);color:#000;font:800 12px/1 "Mono",monospace;padding:7px 10px;border-radius:8px}
+.res .bd{padding:18px 20px}
+.res h3{font-size:22px}
+.res .why{color:var(--mut);font-size:14px;margin-top:6px}
+.res .tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}
+.res .tags span{font:500 11px/1 "Mono",monospace;padding:6px 8px;border-radius:6px;background:rgba(255,255,255,.06);color:var(--mut)}
+.empty{grid-column:1/-1;border:1px dashed var(--line);border-radius:var(--r);padding:60px 30px;text-align:center;color:var(--mut)}
+.empty b{display:block;font:700 26px/1.2 "Bricolage";color:var(--ink);margin-bottom:8px}
+
+/* gallery */
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px}
+.filters button{background:transparent;border:1px solid var(--line);color:var(--mut);border-radius:999px;padding:10px 16px;font:600 14px/1 "Inter";cursor:pointer;transition:all .2s}
+.filters button.on{background:var(--ink);color:#000;border-color:var(--ink)}
+.gal{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;perspective:1400px}
+.tc{position:relative;border-radius:var(--r);background:var(--card);border:1px solid var(--line);overflow:hidden;transform-style:preserve-3d;transition:transform .15s ease-out,opacity .4s,border-color .3s;cursor:pointer}
+.tc:hover{border-color:#3a3a4c}
+.tc.hide{display:none}
+.tc .im{aspect-ratio:16/10;background:#111 center/cover;position:relative;overflow:hidden}
+.tc .im:after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 55%,rgba(7,7,10,.85))}
+.tc .no{position:absolute;top:12px;left:12px;z-index:2;font:700 12px/1 "Mono",monospace;background:rgba(0,0,0,.6);backdrop-filter:blur(6px);padding:7px 9px;border-radius:8px}
+.tc .md{position:absolute;top:12px;right:12px;z-index:2;font:600 11px/1 "Mono",monospace;padding:7px 9px;border-radius:8px;background:rgba(255,255,255,.9);color:#000}
+.tc .md.dark{background:#000;color:#fff;border:1px solid #333}
+.tc .bd{padding:18px 20px 20px;transform:translateZ(30px)}
+.tc h3{font-size:24px}
+.tc p{color:var(--mut);font-size:14px;margin-top:4px}
+.tc .glare{position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at var(--gx,50%) var(--gy,50%),rgba(255,255,255,.14),transparent 45%);opacity:0;transition:opacity .3s;z-index:3}
+.tc:hover .glare{opacity:1}
+
+/* inside */
+.feat{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.fx{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px}
+.fx svg{width:26px;height:26px;color:var(--a);margin-bottom:16px}
+.fx h3{font-size:19px;margin-bottom:6px;letter-spacing:-.02em}
+.fx p{color:var(--mut);font-size:14.5px}
+.fx.big{grid-column:span 2;background:linear-gradient(135deg,rgba(139,92,246,.18),rgba(212,255,58,.06)),var(--card)}
+.chat{margin-top:16px;display:flex;flex-direction:column;gap:8px;max-width:520px}
+.chat div{padding:10px 14px;border-radius:14px;font-size:14px;max-width:85%}
+.chat .u{align-self:flex-end;background:var(--ink);color:#000;border-bottom-right-radius:4px}
+.chat .c{background:#1d1d28;border:1px solid var(--line);border-bottom-left-radius:4px}
+
+/* pricing */
+.price{display:grid;grid-template-columns:1.1fr .9fr;gap:20px;align-items:stretch}
+.pc{border-radius:28px;padding:40px;border:1px solid var(--line);background:var(--card);position:relative;overflow:hidden}
+.pc.main{background:radial-gradient(80% 60% at 100% 0%,rgba(212,255,58,.16),transparent 60%),radial-gradient(70% 60% at 0% 100%,rgba(139,92,246,.22),transparent 60%),var(--card);border-color:#34344a}
+.pc .amt{font:700 72px/1 "Bricolage";letter-spacing:-.04em;margin:18px 0 6px}
+.pc .amt small{font-size:20px;color:var(--mut);font-weight:500;letter-spacing:0}
+.pc ul{list-style:none;margin:24px 0 30px;display:grid;gap:12px}
+.pc li{display:flex;gap:12px;align-items:flex-start;font-size:15px}
+.pc li:before{content:"";flex:0 0 20px;height:20px;border-radius:50%;background:var(--a) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='3'%3E%3Cpath d='M5 12l5 5L20 7'/%3E%3C/svg%3E") center/12px no-repeat;margin-top:2px}
+.pc .note{font-size:13px;color:var(--mut);margin-top:16px}
+.pc h3{font-size:26px}
+
+/* faq */
+.faq{max-width:860px}
+.q{border-bottom:1px solid var(--line)}
+.q button{width:100%;text-align:left;background:none;border:0;color:var(--ink);font:600 19px/1.3 "Bricolage";padding:24px 40px 24px 0;cursor:pointer;position:relative;letter-spacing:-.01em}
+.q button:after{content:"+";position:absolute;right:4px;top:20px;font:400 28px/1 "Inter";color:var(--a);transition:transform .3s}
+.q.open button:after{transform:rotate(45deg)}
+.q .a{max-height:0;overflow:hidden;transition:max-height .4s ease;color:var(--mut)}
+.q .a p{padding:0 0 24px}
+
+/* cta + footer */
+.cta{text-align:center;padding:140px 0}
+.cta h2{font-size:clamp(44px,7vw,110px)}
+.cta p{color:var(--mut);margin:20px 0 34px;font-size:18px}
+footer{border-top:1px solid var(--line);padding:36px 0;color:var(--mut);font-size:13px}
+footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+
+/* modal */
+.modal{position:fixed;inset:0;z-index:90;background:rgba(5,5,8,.82);backdrop-filter:blur(10px);display:none;align-items:center;justify-content:center;padding:24px}
+.modal.on{display:flex}
+.mbox{background:var(--bg2);border:1px solid var(--line);border-radius:24px;max-width:1040px;width:100%;max-height:92vh;overflow:auto;display:grid;grid-template-columns:1.5fr 1fr;animation:pop .35s cubic-bezier(.2,.8,.2,1)}
+@keyframes pop{from{opacity:0;transform:scale(.94) rotateX(8deg)}}
+.mbox .im{background-color:#111;aspect-ratio:16/10;align-self:start}
+.mbox .bd{padding:32px}
+.mbox h3{font-size:38px;margin:10px 0}
+.mbox p{color:var(--mut);font-size:15px}
+.mbox dl{margin:20px 0 26px;display:grid;gap:12px;font-size:14px}
+.mbox dt{color:var(--mut);font-size:12px;font-family:"Mono";letter-spacing:.1em;text-transform:uppercase}
+.mbox .btns{display:flex;gap:10px;flex-wrap:wrap}
+.x{position:absolute;top:22px;right:22px;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--bg2);color:var(--ink);font-size:22px;cursor:pointer}
+
+/* reveal + cursor */
+.rv{opacity:0;transform:translateY(40px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+#cur{position:fixed;left:0;top:0;width:340px;height:340px;margin:-170px 0 0 -170px;border-radius:50%;background:radial-gradient(circle,rgba(139,92,246,.16),transparent 60%);pointer-events:none;z-index:1;transition:opacity .3s}
+#dot{position:fixed;left:0;top:0;width:10px;height:10px;margin:-5px 0 0 -5px;border-radius:50%;background:var(--a);box-shadow:0 0 18px var(--a);pointer-events:none;z-index:200}
+
+@media (max-width:1024px){
+  .steps{grid-template-columns:1fr 1fr}.gal{grid-template-columns:1fr 1fr}.feat{grid-template-columns:1fr 1fr}
+  .finder{grid-template-columns:1fr}.panel{position:static}.price{grid-template-columns:1fr}
+  .mbox{grid-template-columns:1fr}.mbox .im{min-height:0}
+}
+@media (max-width:720px){
+  nav .links{display:none}nav{gap:12px}
+  .hero{padding-top:120px}
+  .stage{height:330px}.ring .sc{width:190px;height:119px;left:-95px}.floor{top:210px}
+  section{padding:84px 0}.wrap{padding:0 16px}
+  .steps,.gal,.feat,.results{grid-template-columns:1fr}.fx.big{grid-column:auto}
+  .pc{padding:28px}.pc .amt{font-size:56px}
+  #cur,#dot{display:none}
+}
+@media (hover:none){#cur,#dot{display:none}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv,.res{opacity:1;transform:none}}
+
+/* checkout */
+.co{position:fixed;inset:0;z-index:95;background:rgba(5,5,8,.85);backdrop-filter:blur(10px);display:none;align-items:center;justify-content:center;padding:20px}
+.co.on{display:flex}
+.cobox{position:relative;background:var(--bg2);border:1px solid var(--line);border-radius:24px;width:100%;max-width:560px;max-height:94vh;overflow:auto;padding:28px;animation:pop .35s cubic-bezier(.2,.8,.2,1)}
+.cobox .x{top:16px;right:16px}
+.cobox h3{font-size:28px;margin:6px 0 4px}
+.cobox .sub2{color:var(--mut);font-size:14px}
+.tabs{display:grid;grid-template-columns:1fr 1fr;gap:6px;background:#0b0b10;border:1px solid var(--line);border-radius:14px;padding:5px;margin:20px 0}
+.tabs button{background:none;border:0;color:var(--mut);padding:12px;border-radius:10px;font:700 14px/1 "Inter";cursor:pointer}
+.tabs button.on{background:var(--ink);color:#000}
+.pane{display:none}.pane.on{display:block}
+.payrow{display:grid;grid-template-columns:200px 1fr;gap:20px;align-items:center}
+.qr{background:#fff;border-radius:16px;padding:12px;width:200px;height:200px;display:grid;place-items:center}
+.qr img{width:176px;height:176px;image-rendering:pixelated}
+.payinfo .big{font:700 40px/1 "Bricolage";letter-spacing:-.03em}
+.payinfo .vpa{display:flex;gap:8px;align-items:center;margin:12px 0;background:#0b0b10;border:1px solid var(--line);border-radius:10px;padding:10px 12px;font:500 14px/1.2 "Mono"}
+.payinfo .vpa button{margin-left:auto;background:none;border:1px solid var(--line);color:var(--ink);border-radius:8px;padding:6px 10px;cursor:pointer;font:600 12px/1 "Inter"}
+.payinfo .apps{font-size:12px;color:var(--mut)}
+.f2{display:grid;gap:10px;margin-top:22px}
+.f2 .lbl{font-size:13px;color:var(--mut);margin-top:6px}
+.f2 input{width:100%;background:#0b0b10;border:1px solid var(--line);border-radius:12px;color:var(--ink);font:inherit;padding:13px 15px;outline:none}
+.f2 input:focus{border-color:var(--a)}
+.f2 .btn{justify-content:center;width:100%}
+.msg{margin-top:12px;font-size:14px;color:var(--mut);min-height:20px}
+.msg.ok{color:var(--a)}.msg.err{color:#ff7a7a}
+.dl{display:grid;gap:10px;margin-top:16px}
+.dl a{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:14px 16px;border-radius:14px;background:#14141c;border:1px solid var(--line);font-weight:600;font-size:14px}
+.dl a b{background:var(--a);color:#000;border-radius:999px;padding:7px 12px;font-size:12px}
+.stepno{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--a);color:#000;font:800 12px/1 "Inter";margin-right:8px}
+.warn{background:rgba(255,170,0,.1);border:1px solid rgba(255,170,0,.35);color:#ffcf70;border-radius:12px;padding:12px 14px;font-size:13px}
+@media (max-width:560px){.payrow{grid-template-columns:1fr}.qr{margin:0 auto}.cobox{padding:22px}}
+
+.vid{padding:90px 0 40px}
+.vframe{position:relative;border-radius:22px;overflow:hidden;border:1px solid var(--line);box-shadow:0 40px 120px -30px rgba(139,92,246,.45);background:#000;transform:perspective(1600px) rotateX(6deg);transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+.vframe.in{transform:none}
+.vframe video{display:block;width:100%;height:auto}
+.vbar{display:flex;gap:7px;padding:12px 16px;background:#111118;border-bottom:1px solid var(--line)}.vbar i{width:11px;height:11px;border-radius:50%;background:#2c2c38}
+.vcap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:18px;color:var(--mut);font-size:14px}
+</style>
+</head>
+<body>
+<div id="progress"></div><div id="cur"></div><div id="dot"></div>
+
+<nav>
+  <a class="logo" href="#top"><i></i>Foliocraft</a>
+  <div class="links"><a href="#how">How it works</a><a href="#finder">Find my 4</a><a href="#themes">Themes</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a></div>
+  <a class="btn p buy" href="#buy">Get all 24</a>
+</nav>
+
+<header class="hero" id="top">
+  <div class="grid"></div>
+  <div class="txt">
+    <div class="pill rv"><b>NEW</b> 24 themes for 24 kinds of careers</div>
+    <h1 class="rv">Your resume in.<br><span class="grad">A premium website out.</span></h1>
+    <p class="sub rv">Upload your resume and one photo. Claude picks the 4 best themes for your profession, you choose one, and your portfolio is ready to host free. Want changes? Just ask in chat.</p>
+    <div class="ctas rv"><a class="btn p" href="#finder">Find my 4 themes <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="btn g" href="#themes">Browse all 24</a></div>
+  </div>
+  <div class="stage" id="stage"><div class="floor"></div><div class="ring" id="ring"></div></div>
+  <div class="hint">DRAG TO SPIN &middot; CLICK A THEME</div>
+</header>
+
+<div class="marq"><div id="mq"></div></div>
+
+<section class="vid" id="demo"><div class="wrap">
+  <div class="head rv" style="margin-bottom:34px"><div class="eyebrow">Watch a theme in action</div><h2>This is what <span class="grad">your site</span> feels like.</h2><p>Growth Ledger with sample content &mdash; yours gets your real resume and photo.</p></div>
+  <div class="vframe rv"><div class="vbar"><i></i><i></i><i></i></div><button type="button" id="snd" aria-label="Turn sound on" style="position:absolute;right:16px;bottom:16px;z-index:2;background:rgba(10,10,14,.8);color:#fff;border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:9px 14px;font:600 13px/1 Inter,sans-serif;cursor:pointer;backdrop-filter:blur(6px)">&#128263; Sound on</button><video id="dv" src="demo-growth.mp4" poster="demo-growth.jpg" autoplay muted loop playsinline preload="metadata" disablepictureinpicture controlslist="nodownload noplaybackrate"></video></div>
+  <div class="vcap"><span>Theme 06 &middot; Growth Ledger &middot; for sales, marketing &amp; growth roles</span><a href="#themes" style="color:var(--a)">See all 24 themes &rarr;</a></div>
+</div></section>
+<section id="how"><div class="wrap">
+  <div class="head rv"><div class="eyebrow">How it works</div><h2>Four steps. <span class="grad">About ten minutes.</span></h2><p>No coding, no design skills, no monthly fees. Everything runs in your own Claude chat.</p></div>
+  <div class="steps">
+    <div class="step rv tilt"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M12 18v-6M9 15l3-3 3 3"/></svg></div><div class="n">01</div><h3>Upload</h3><p>Add the Foliocraft skill to Claude, then share your resume (PDF or Word) and one good photo.</p></div>
+    <div class="step rv tilt"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l2.6 5.6L20 9.3l-4 4 1 5.7-5-2.8-5 2.8 1-5.7-4-4 5.4-.7z"/></svg></div><div class="n">02</div><h3>Get your 4</h3><p>Claude reads your role and recommends the 4 best themes out of 24, with a preview of each.</p></div>
+    <div class="step rv tilt"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg></div><div class="n">03</div><h3>Pick &amp; build</h3><p>Choose one. Claude fills it with your real experience, numbers and photo &mdash; never invented ones.</p></div>
+    <div class="step rv tilt"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 21l1.9-5.4A8 8 0 1 1 21 12z"/></svg></div><div class="n">04</div><h3>Go live, tweak in chat</h3><p>Host free on GitHub Pages. Ask &ldquo;make it navy&rdquo; or &ldquo;add my new job&rdquo; any time.</p></div>
+  </div>
+</div></section>
+
+<section id="finder" style="background:var(--bg2);border-block:1px solid var(--line)"><div class="wrap">
+  <div class="head rv"><div class="eyebrow">Theme finder</div><h2>See your <span class="grad">best 4</span> right now.</h2><p>The same matching logic Claude uses: your role, how many photos you have, and whether you like light or dark.</p></div>
+  <div class="finder">
+    <form class="panel rv" id="ff" onsubmit="return false">
+      <label for="role">Your job title and field</label>
+      <input id="role" placeholder="e.g. Regional Sales Manager, B2B SaaS" autocomplete="off" />
+      <div class="chips" id="quick"></div>
+      <label>Photos you can share</label>
+      <div class="seg" id="ph"><button type="button" data-v="1" class="on">Just 1</button><button type="button" data-v="3">2 &ndash; 5</button><button type="button" data-v="8">6 +</button></div>
+      <label>Look</label>
+      <div class="seg" id="md"><button type="button" data-v="" class="on">Any</button><button type="button" data-v="light">Light</button><button type="button" data-v="dark">Dark</button></div>
+      <button class="btn p" id="go" type="submit">Show my 4 themes</button>
+    </form>
+    <div class="results" id="res"><div class="empty"><b>Your 4 picks show up here</b>Type a role or tap one of the examples.</div></div>
+  </div>
+</div></section>
+
+<section id="themes"><div class="wrap">
+  <div class="head rv"><div class="eyebrow">The collection</div><h2>24 themes. <span class="grad">Built for real careers.</span></h2><p>Each one has its own layout, fonts, motion and sections &mdash; not colour swaps. Click any theme to open the live demo.</p></div>
+  <div class="filters rv" id="fl">
+    <button class="on" data-c="all">All 24</button><button data-c="business">Business &amp; Sales</button><button data-c="tech">Tech &amp; Students</button><button data-c="creative">Creative</button><button data-c="pro">Law, Health &amp; Finance</button><button data-c="life">Lifestyle</button><button data-c="platform">Platform-style</button>
+  </div>
+  <div class="gal" id="gal"></div>
+</div></section>
+
+<section id="inside" style="background:var(--bg2);border-block:1px solid var(--line)"><div class="wrap">
+  <div class="head rv"><div class="eyebrow">What's inside</div><h2>Premium where it shows. <span class="grad">Simple where it matters.</span></h2></div>
+  <div class="feat">
+    <div class="fx big rv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 21l1.9-5.4A8 8 0 1 1 21 12z"/></svg><h3>Change anything in plain words</h3><p>Your site lives with your Claude chat. Ask, and it edits the file for you.</p>
+      <div class="chat"><div class="u">Make the accent navy and add my new role at Zentro.</div><div class="c">Done &mdash; accent is now #1e3a8a and Zentro is at the top of Experience. Here's the updated index.html.</div></div></div>
+    <div class="fx rv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3 7h7l-5.5 4 2 7-6.5-4.5L5.5 20l2-7L2 9h7z"/></svg><h3>Motion that feels expensive</h3><p>3D tilt, scroll reveals, count-ups, custom cursors &mdash; switched off for touch and reduced-motion users.</p></div>
+    <div class="fx rv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg><h3>Mobile-perfect</h3><p>Every theme is checked at phone width before you get it. No sideways scrolling, no broken grids.</p></div>
+    <div class="fx rv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><h3>Honest by design</h3><p>Only facts from your resume. Law, medical, CA and RERA rules built in for Indian professionals.</p></div>
+    <div class="fx rv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg><h3>Free hosting forever</h3><p>One index.html plus images. GitHub Pages, Cloudflare Pages or Netlify &mdash; all free, step-by-step.</p></div>
+    <div class="fx rv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 1l4 4-4 4M3 11V9a4 4 0 0 1 4-4h14M7 23l-4-4 4-4M21 13v2a4 4 0 0 1-4 4H3"/></svg><h3>Switch themes any time</h3><p>Changed careers or just bored? Your same content moves into any of the other 23 themes.</p></div>
+    <div class="fx big rv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7V4h16v3M9 20h6M12 4v16"/></svg><h3>Fonts included</h3><p>24 hand-picked open-source font pairings, self-hosted. No external scripts, nothing to break.</p></div>
+  </div>
+</div></section>
+
+<section id="pricing"><div class="wrap">
+  <div class="head rv"><div class="eyebrow">Pricing</div><h2>One payment. <span class="grad">All 24 themes.</span></h2><p>No subscription. Use it for your own site and rebuild whenever your career moves.</p></div>
+  <div class="price">
+    <div class="pc main rv"><div class="eyebrow">Foliocraft Pro</div><div class="amt" id="amt">&#8377;999 <small>one-time</small></div><p style="color:var(--mut)">The complete skill: 24 themes, the 4-best finder and lifetime updates.</p>
+      <ul><li>All 24 premium themes with live previews</li><li>Claude recommends your best 4 from your resume</li><li>Unlimited edits in your own Claude chat</li><li>Free hosting guide (GitHub Pages, Cloudflare, Netlify)</li><li>Future themes added free</li></ul>
+      <a class="btn p buy" href="#buy">Buy now &amp; download <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 4v12M6 10l6 6 6-6M5 20h14"/></svg></a>
+      <div class="note">Pay by UPI &rarr; get your voucher code &rarr; unlock the clean, watermark-free download. Already have a code? <a href="#voucher" class="buy" style="color:var(--a);text-decoration:underline">Redeem voucher</a>.<br>You'll need a Claude account that supports Skills.</div></div>
+    <div class="pc rv"><div class="eyebrow">Done for you</div><h3 style="margin-top:18px">Don't want to do it yourself?</h3><p style="color:var(--mut);margin-top:10px">Send your resume and photo. We build, check and publish your site, and hand you the files.</p>
+      <ul><li>Theme chosen with you</li><li>Live on your free GitHub Pages link</li><li>Two rounds of changes</li></ul>
+      <a class="btn g" id="dfy" href="#">Ask for a quote</a></div>
+  </div>
+</div></section>
+
+<section id="faq" style="padding-top:40px"><div class="wrap">
+  <div class="head rv"><div class="eyebrow">FAQ</div><h2>Questions, answered.</h2></div>
+  <div class="faq" id="faqs"></div>
+</div></section>
+
+<div class="cta"><div class="wrap rv"><h2>Your next job<br><span class="grad">sees this first.</span></h2><p>Make it count. Find the 4 themes made for you.</p><a class="btn p" href="#finder">Find my 4 themes</a></div></div>
+
+<footer><div class="wrap"><span>&copy; <span id="yr">2026</span> Foliocraft. Themes 21&ndash;24 use generic streaming, store, music and video layouts with original names, and are not affiliated with any platform.</span><span><a href="#" id="mail">Contact</a></span></div></footer>
+
+<div class="co" id="co" role="dialog" aria-modal="true"><div class="cobox">
+  <button class="x" id="cox" aria-label="Close">&times;</button>
+  <div class="eyebrow">Checkout</div><h3>Foliocraft Pro</h3><div class="sub2">All 24 themes &middot; the 4-best finder &middot; clean files, no watermark</div>
+  <div class="tabs"><button type="button" id="tbu" class="on">Pay by UPI</button><button type="button" id="tbv">Redeem voucher</button></div>
+  <div class="pane on" id="pu">
+    <div id="upiOk">
+      <div class="payrow"><div class="qr" id="qr"></div>
+        <div class="payinfo"><div class="big" id="coamt"></div><div class="vpa"><span id="vpa"></span><button type="button" id="cpy">Copy</button></div>
+          <a class="btn p" id="upibtn" href="#" style="width:100%;justify-content:center">Pay with UPI app</a>
+          <div class="apps" style="margin-top:10px">Scan with any UPI app, or tap the button on your phone.</div></div></div>
+      <form class="f2" id="paidf" onsubmit="return false">
+        <div><span class="stepno">2</span><b>Paid? Send us your details</b></div>
+        <input id="pn" placeholder="Your name" required autocomplete="name" />
+        <input id="pe" type="email" placeholder="Email (your voucher comes here)" required autocomplete="email" />
+        <input id="pt" placeholder="UPI transaction ID / UTR (12 digits)" required inputmode="numeric" />
+        <button class="btn p" id="psend" type="submit">Submit payment details</button>
+        <a class="btn g" id="pwa" href="#" target="_blank" rel="noopener" style="display:none">Send on WhatsApp instead</a>
+        <div class="msg" id="pmsg"></div>
+      </form>
+    </div>
+    <div class="warn" id="upiNo" style="display:none">UPI payments are being set up. Please email <a id="upiMail" href="#" style="text-decoration:underline"></a> to buy.</div>
+  </div>
+  <div class="pane" id="pv">
+    <form class="f2" id="vf" onsubmit="return false" style="margin-top:0">
+      <div class="lbl">Enter the voucher code you received after payment</div>
+      <input id="vc" placeholder="FC-XXXX-XXXX-XXXX-XXXX" autocomplete="off" spellcheck="false" style="font-family:Mono,monospace;letter-spacing:.06em;text-transform:uppercase" />
+      <button class="btn p" id="vgo" type="submit">Unlock downloads</button>
+      <div class="msg" id="vmsg"></div>
+    </form>
+    <div class="dl" id="dl"></div>
+  </div>
+</div></div>
+<div class="modal" id="modal" role="dialog" aria-modal="true"><button class="x" id="mx" aria-label="Close">&times;</button><div class="mbox" id="mbox"></div></div>
+
+<script src="qrcode.js"></script>
+<script>
+/* ===== Settings: change these ===== */
+var CONFIG = {
+  upiId: "",                                /* YOUR UPI ID, e.g. yourname@okaxis  (QR + UPI button use this) */
+  payeeName: "Foliocraft",                  /* name shown in the UPI app */
+  amount: 999,                              /* price in rupees */
+  email: "connect.pranav09@gmail.com",      /* payment proofs and questions come here */
+  whatsapp: "",                             /* optional, e.g. 919876543210 (country code, no +). Empty = hidden */
+  products: {                               /* encrypted downloads unlocked by a voucher */
+    pro:      { file: "pack-pro.bin",      name: "foliocraft-pro.zip",           label: "Foliocraft Pro (24 themes skill)" },
+    demos:    { file: "pack-demos.bin",    name: "foliocraft-clean-demos.zip",   label: "Clean live demos (no watermark)" },
+    previews: { file: "pack-previews.bin", name: "foliocraft-previews.zip",      label: "Preview images (all 24)" }
+  }
+};
+var THEMES = [{"id":"terminal","no":1,"name":"Terminal","mode":"dark","fam":"dev","kw":["software","developer","engineer","programmer","backend","frontend","fullstack","devops","sre","qa","tester","data","engineer","ml","engineer","cloud"],"aud":["tech"],"minp":1,"need":"low","best":"Software developers, DevOps, QA","cat":"tech","sec":"Typed command hero, contribution graph, stack, projects as repos, experience log, contact"},{"id":"plansection","no":2,"name":"Plan & Section","mode":"light","fam":"grid","kw":["architect","interior","designer","urban","planner","civil","engineer","landscape","construction"],"aud":["creative"],"minp":6,"need":"high","best":"Architects, interior designers","cat":"creative","sec":"Split-text hero, project sheets, grayscale-to-colour gallery, process, practice, contact"},{"id":"casebook","no":3,"name":"Casebook","mode":"light","fam":"editorial","kw":["ui","ux","product","designer","visual","designer","design","lead","researcher","interaction","designer"],"aud":["creative","tech"],"minp":3,"need":"medium","best":"UI/UX & product designers","cat":"creative","sec":"Sticky stacking case studies, process, clients, about, contact"},{"id":"riso","no":4,"name":"Riso","mode":"light","fam":"playful","kw":["graphic","designer","illustrator","artist","animator","brand","designer","motion","designer","art","director"],"aud":["creative"],"minp":6,"need":"high","best":"Graphic designers, illustrators","cat":"creative","sec":"Blob hero, marquee, work wall, services, about, contact"},{"id":"darkroom","no":5,"name":"Darkroom","mode":"dark","fam":"gallery","kw":["photographer","videographer","filmmaker","cinematographer","editor","wedding","photographer"],"aud":["creative"],"minp":6,"need":"high","best":"Photographers, videographers","cat":"creative","sec":"Ken-Burns hero, horizontal gallery, series, services, contact"},{"id":"growth","no":6,"name":"Growth Ledger","mode":"light","fam":"split","kw":["sales","marketing","growth","head","business","development","account","manager","key","account","revenue","gtm","revops","regional","manager","funnel","pnl","leadership","b2b"],"aud":["corporate"],"minp":3,"need":"medium","best":"Sales, marketing, growth, BD","cat":"business","sec":"3D photo stage, stats, AI toolkit rail, experience, projects, awards"},{"id":"roadmap","no":7,"name":"Roadmap","mode":"light","fam":"timeline","kw":["product","manager","program","manager","project","manager","scrum","master","product","owner","operations"],"aud":["corporate","tech"],"minp":1,"need":"low","best":"Product & project managers","cat":"business","sec":"Horizontal career roadmap, case cards, skills, contact"},{"id":"notebook","no":8,"name":"Notebook","mode":"dark","fam":"dashboard","kw":["data","scientist","data","analyst","business","analyst","bi","analyst","statistician","ml","researcher","analytics"],"aud":["tech"],"minp":1,"need":"low","best":"Data scientists, analysts","cat":"tech","sec":"Dashboard hero, charts, notebook-cell projects, stack, contact"},{"id":"advisory","no":9,"name":"Advisory","mode":"light","fam":"editorial","kw":["consultant","strategy","management","consultant","hr","human","resources","recruiter","talent","coach","advisor"],"aud":["corporate","professional","health"],"minp":3,"need":"medium","best":"Consultants, HR, coaches","cat":"business","sec":"Expertise accordion, engagements, approach, booking, contact"},{"id":"ledger","no":10,"name":"Ledger Noir","mode":"dark","fam":"editorial","kw":["chartered","accountant","ca","finance","cfo","auditor","tax","accountant","banker","investment","analyst","cfa","company","secretary"],"aud":["corporate","professional"],"minp":3,"need":"medium","best":"Chartered accountants, finance","cat":"pro","sec":"Gold hairline hero, services, credentials, experience, ICAI disclosure"},{"id":"counsel","no":11,"name":"Counsel","mode":"light","fam":"editorial","kw":["lawyer","advocate","legal","counsel","attorney","solicitor","legal","associate"],"aud":["professional"],"minp":3,"need":"medium","best":"Lawyers, advocates","cat":"pro","sec":"Disclaimer gate, practice areas, education, publications, contact"},{"id":"clinic","no":12,"name":"Clinic","mode":"light","fam":"split","kw":["doctor","physician","surgeon","dentist","physiotherapist","nurse","healthcare","clinician","pharmacist","nutritionist","dermatologist","cardiologist","pediatrician","gynecologist","orthopedic","psychiatrist","psychologist","therapist","mbbs","clinic","hospital"],"aud":["health"],"minp":3,"need":"medium","best":"Doctors, dentists, therapists","cat":"pro","sec":"Badges hero, specialities, timings tabs, qualifications, registration badge, contact"},{"id":"scholar","no":13,"name":"Scholar","mode":"light","fam":"document","kw":["professor","researcher","academic","phd","scientist","lecturer","teacher","postdoc"],"aud":["professional"],"minp":1,"need":"low","best":"Professors, researchers","cat":"pro","sec":"Sticky TOC, research, publications by year, teaching, CV"},{"id":"byline","no":14,"name":"Byline","mode":"light","fam":"editorial","kw":["writer","journalist","author","editor","copywriter","content","writer","blogger","columnist"],"aud":["creative"],"minp":3,"need":"medium","best":"Writers, journalists","cat":"creative","sec":"Rotating seal, chapters, articles list, books, contact"},{"id":"compcard","no":15,"name":"Comp Card","mode":"light","fam":"gallery","kw":["model","actor","actress","performer","dancer","influencer","anchor","host"],"aud":["creative","lifestyle"],"minp":6,"need":"high","best":"Models, actors","cat":"creative","sec":"Full-bleed editorial, comp card stats, gallery, showreel, contact"},{"id":"mise","no":16,"name":"Mise","mode":"light","fam":"playful","kw":["chef","cook","baker","hospitality","restaurant","hotel","caterer","bartender","food","stylist","cafe"],"aud":["creative","lifestyle"],"minp":6,"need":"high","best":"Chefs, hospitality","cat":"life","sec":"Spinning plate hero, menu card, dishes, kitchens, contact"},{"id":"repcount","no":17,"name":"Rep Count","mode":"dark","fam":"bold","kw":["fitness","coach","personal","trainer","yoga","instructor","wellness","coach","sports","athlete","nutrition","coach"],"aud":["health","lifestyle"],"minp":3,"need":"medium","best":"Fitness & wellness coaches","cat":"life","sec":"Kinetic headline, before/after slider, programs, pricing, contact"},{"id":"keys","no":18,"name":"Keys","mode":"light","fam":"listing","kw":["real","estate","agent","broker","property","consultant","realtor","channel","partner"],"aud":["lifestyle"],"minp":6,"need":"high","best":"Real estate agents","cat":"life","sec":"Listings with zoom, RERA fields, areas, process, contact"},{"id":"founder","no":19,"name":"Founder","mode":"dark","fam":"sidebar","kw":["founder","cofounder","ceo","cto","coo","cxo","director","vp","president","executive","entrepreneur","startup","owner"],"aud":["corporate","tech"],"minp":1,"need":"low","best":"Founders, CXOs","cat":"business","sec":"Fixed sidebar, neon blobs, ventures, KPIs, experience, contact"},{"id":"launchpad","no":20,"name":"Launchpad","mode":"light","fam":"bento","kw":["student","fresher","intern","graduate","mba","student","campus","beginner","junior"],"aud":["corporate","tech"],"minp":1,"need":"low","best":"Students, freshers","cat":"tech","sec":"Bento tiles, projects, skills, education, certifications, contact"},{"id":"binge","no":21,"name":"Binge","mode":"dark","fam":"streaming","kw":["sales","marketing","media","creator","brand","manager","content","strategist","entertainment","advertising","digital","marketer"],"aud":["corporate","creative"],"minp":3,"need":"medium","best":"Sales, media, creators","cat":"platform","sec":"Billboard hero, Top-5 numbers, project rail, episodes (experience), awards rail, AI rail"},{"id":"storefront","no":22,"name":"Storefront","mode":"light","fam":"store","kw":["sales","business","development","ecommerce","freelancer","consultant","account","manager","retail","category","manager"],"aud":["corporate"],"minp":3,"need":"medium","best":"Sales, freelancers, e-com","cat":"platform","sec":"Product-page profile, buy box, hired-together, spec table, ratings, Q&A"},{"id":"wavelength","no":23,"name":"Wavelength","mode":"dark","fam":"player","kw":["musician","singer","producer","dj","composer","audio","creative","marketing","podcaster","sound","designer"],"aud":["creative","lifestyle"],"minp":3,"need":"medium","best":"Musicians, creatives","cat":"platform","sec":"Library sidebar, artist header, popular tracks, discography, now-playing bar"},{"id":"channel","no":24,"name":"Channel","mode":"dark","fam":"video","kw":["content","creator","youtuber","educator","trainer","teacher","coach","speaker","video","creator","corporate","trainer"],"aud":["creative","lifestyle"],"minp":3,"need":"medium","best":"Creators, educators, trainers","cat":"platform","sec":"Channel banner, video grid, featured video, shorts highlights, about"}];
+</script>
+<script>
+(function () {
+  var d = document, w = window, i;
+  var reduce = w.matchMedia && w.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var touch = w.matchMedia && w.matchMedia("(hover: none)").matches;
+  function $(s) { return d.querySelector(s); }
+  function el(tag, cls, html) { var e = d.createElement(tag); if (cls) { e.className = cls; } if (html) { e.innerHTML = html; } return e; }
+  function byId(id) { for (var k = 0; k < THEMES.length; k++) { if (THEMES[k].id === id) { return THEMES[k]; } } return null; }
+  function thumb(id) {
+    for (var k = 0; k < THEMES.length; k++) { if (THEMES[k].id === id) { break; } }
+    var c = k % 4, r = Math.floor(k / 4);
+    return "background-image:url(thumbs.jpg);background-size:400% 600%;background-position:" + (c / 3 * 100) + "% " + (r / 5 * 100) + "%;";
+  }
+  function pad(n) { return n < 10 ? "0" + n : "" + n; }
+
+  /* config */
+  $("#amt").innerHTML = "&#8377;" + CONFIG.amount + " <small>one-time</small>";
+  var buyHref = "#buy";
+  d.addEventListener("click", function (e) {
+    var a = e.target.closest ? e.target.closest("a.buy") : null; if (!a) { return; }
+    e.preventDefault(); openCheckout(a.getAttribute("href") === "#voucher" ? "v" : "u");
+  });
+  $("#dfy").href = "mailto:" + CONFIG.email + "?subject=" + encodeURIComponent("Done-for-you portfolio") + "&body=" + encodeURIComponent("Hi, please build my portfolio. My resume and photo are attached.");
+  $("#mail").href = "mailto:" + CONFIG.email;
+  $("#yr").textContent = new Date().getFullYear();
+
+  /* marquee */
+  var mq = "";
+  for (i = 0; i < THEMES.length; i++) { mq += "<span>" + THEMES[i].best.split(",")[0] + "</span>"; }
+  $("#mq").innerHTML = mq + mq;
+
+  /* ===== 3D ring ===== */
+  var ring = $("#ring"), N = 12, picks = ["growth", "terminal", "casebook", "binge", "clinic", "darkroom", "founder", "storefront", "counsel", "wavelength", "launchpad", "channel"];
+  var small = w.innerWidth < 720, R = small ? 300 : 560;
+  for (i = 0; i < N; i++) {
+    var t = byId(picks[i]), c = el("div", "sc", "<span>" + pad(t.no) + " &middot; " + t.name + "</span>");
+    c.style.cssText += thumb(t.id);
+    c.style.transform = "rotateY(" + (i * 360 / N) + "deg) translateZ(" + R + "px)";
+    c.setAttribute("data-id", t.id);
+    ring.appendChild(c);
+  }
+  var rot = 0, vel = reduce ? 0 : 0.12, tiltX = -8, drag = false, lastX = 0, moved = 0;
+  function spin() {
+    if (!drag) { rot += vel; vel += ((reduce ? 0 : 0.12) - vel) * 0.02; }
+    var sc = w.pageYOffset || 0;
+    ring.style.transform = "rotateX(" + (tiltX - Math.min(sc / 30, 14)) + "deg) rotateY(" + rot + "deg)";
+    w.requestAnimationFrame(spin);
+  }
+  w.requestAnimationFrame(spin);
+  var stage = $("#stage");
+  function down(x) { drag = true; lastX = x; moved = 0; }
+  function move(x) { if (!drag) { return; } var dx = x - lastX; lastX = x; moved += Math.abs(dx); rot += dx * 0.25; vel = dx * 0.25; }
+  function up() { drag = false; }
+  stage.addEventListener("mousedown", function (e) { down(e.clientX); e.preventDefault(); });
+  w.addEventListener("mousemove", function (e) { move(e.clientX); });
+  w.addEventListener("mouseup", up);
+  stage.addEventListener("touchstart", function (e) { down(e.touches[0].clientX); }, { passive: true });
+  stage.addEventListener("touchmove", function (e) { move(e.touches[0].clientX); }, { passive: true });
+  stage.addEventListener("touchend", up);
+  stage.addEventListener("mousemove", function (e) { if (!drag) { var r = stage.getBoundingClientRect(); tiltX = -8 + ((e.clientY - r.top) / r.height - 0.5) * -10; } });
+  stage.addEventListener("click", function (e) { var s = e.target.closest ? e.target.closest(".sc") : null; if (s && moved < 6) { openTheme(s.getAttribute("data-id")); } });
+
+  /* ===== Gallery ===== */
+  var gal = $("#gal");
+  for (i = 0; i < THEMES.length; i++) {
+    var th = THEMES[i];
+    var card = el("article", "tc rv", '<div class="glare"></div><div class="im" style="' + thumb(th.id) + '"><span class="no">' + pad(th.no) + '</span><span class="md ' + th.mode + '">' + th.mode + '</span></div><div class="bd"><h3>' + th.name + '</h3><p>' + th.best + '</p></div>');
+    card.setAttribute("data-id", th.id); card.setAttribute("data-c", th.cat);
+    gal.appendChild(card);
+  }
+  gal.addEventListener("click", function (e) { var c = e.target.closest ? e.target.closest(".tc") : null; if (c) { openTheme(c.getAttribute("data-id")); } });
+  $("#fl").addEventListener("click", function (e) {
+    var b = e.target; if (b.tagName !== "BUTTON") { return; }
+    var on = d.querySelectorAll("#fl button"); for (var k = 0; k < on.length; k++) { on[k].className = ""; } b.className = "on";
+    var c = b.getAttribute("data-c"), cards = gal.children;
+    for (var j = 0; j < cards.length; j++) { var show = c === "all" || cards[j].getAttribute("data-c") === c; cards[j].className = "tc rv in" + (show ? "" : " hide"); }
+  });
+
+  /* ===== Modal ===== */
+  var modal = $("#modal");
+  function openTheme(id) {
+    var t = byId(id); if (!t) { return; }
+    $("#mbox").innerHTML = '<div class="im" style="' + thumb(t.id) + '"></div><div class="bd"><div class="eyebrow">Theme ' + pad(t.no) + ' &middot; ' + t.mode + '</div><h3>' + t.name + '</h3><p>' + t.best + '</p><dl><div><dt>Sections</dt><dd>' + t.sec + '</dd></div><div><dt>Photos needed</dt><dd>' + (t.need === "high" ? "6 or more (gallery-led)" : t.need === "medium" ? "1 portrait, more is a bonus" : "Just 1 portrait") + '</dd></div></dl><div class="btns"><a class="btn p" href="' + t.id + '.html" target="_blank" rel="noopener">Open live demo</a><a class="btn g buy" href="#buy">Get all 24</a></div></div>';
+    modal.className = "modal on"; d.body.style.overflow = "hidden";
+  }
+  function closeM() { modal.className = "modal"; d.body.style.overflow = ""; }
+  $("#mx").onclick = closeM;
+  modal.addEventListener("click", function (e) { if (e.target === modal) { closeM(); } });
+  d.addEventListener("keydown", function (e) { if (e.key === "Escape") { closeM(); } });
+
+  /* ===== Finder (same scoring as the skill's pick.py) ===== */
+  var UNIVERSAL = { growth: 2, binge: 1.6, storefront: 1.5, founder: 1.4, launchpad: 1, channel: 1, advisory: 1.2, roadmap: 1 };
+  var GENERIC = " manager owner master head senior lead engineer designer analyst consultant coach development business key account content product creative executive director teacher ";
+  function words(s) { return (s.toLowerCase().replace(/p&l/g, "pnl").match(/[a-z]+/g)) || []; }
+  function pick(role, photos, mode) {
+    var rw = " " + words(role).join(" ") + " ", ranked = [], k, j;
+    var regulated = /\s(lawyer|advocate|attorney|doctor|physician|surgeon|dentist|chartered)\s/.test(rw);
+    for (k = 0; k < THEMES.length; k++) {
+      var t = THEMES[k], s = 0, hits = [], seen = {};
+      for (j = 0; j < t.kw.length; j++) {
+        var kw = t.kw[j]; if (seen[kw]) { continue; } seen[kw] = 1;
+        if (rw.indexOf(" " + kw + " ") > -1) { s += GENERIC.indexOf(" " + kw + " ") > -1 ? 1 : (kw.length > 3 ? 3 : 1.5); hits.push(kw); }
+      }
+      for (j = 0; j < t.kw.length - 1; j++) { var p = " " + t.kw[j] + " " + t.kw[j + 1] + " "; if (rw.indexOf(p) > -1) { s += 4; } }
+      s += UNIVERSAL[t.id] || 0;
+      if (photos < t.minp) { s -= t.need === "high" ? 3.5 : 1; }
+      if (mode && t.mode !== mode) { s -= 2.5; }
+      ranked.push({ s: s, t: t, h: hits });
+    }
+    ranked.sort(function (a, b) { return b.s - a.s; });
+    var top = ranked[0];
+    if (top.s >= 2) {
+      for (k = 0; k < ranked.length; k++) { for (j = 0; j < ranked[k].t.aud.length; j++) { if (top.t.aud.indexOf(ranked[k].t.aud[j]) > -1) { ranked[k].s += 2.5; break; } } }
+      ranked.sort(function (a, b) { return b.s - a.s; });
+    }
+    var out = [], fam = {};
+    for (k = 0; k < ranked.length && out.length < 4; k++) {
+      var r = ranked[k];
+      if (regulated && (r.t.id === "storefront" || r.t.id === "binge")) { continue; }
+      if ((fam[r.t.fam] || 0) >= 2) { continue; }
+      out.push(r); fam[r.t.fam] = (fam[r.t.fam] || 0) + 1;
+    }
+    if (!mode && out.length === 4 && out[0].t.mode === out[1].t.mode && out[1].t.mode === out[2].t.mode && out[2].t.mode === out[3].t.mode) {
+      var need = out[0].t.mode === "dark" ? "light" : "dark";
+      for (k = 0; k < ranked.length; k++) { if (ranked[k].t.mode === need && !(regulated && (ranked[k].t.id === "storefront" || ranked[k].t.id === "binge"))) { out[3] = ranked[k]; break; } }
+    }
+    return out;
+  }
+  var photos = 1, mode = "";
+  function seg(id, setter) {
+    $(id).addEventListener("click", function (e) {
+      var b = e.target; if (b.tagName !== "BUTTON") { return; }
+      var bs = this.children; for (var k = 0; k < bs.length; k++) { bs[k].className = ""; } b.className = "on"; setter(b.getAttribute("data-v")); if ($("#role").value) { run(); }
+    });
+  }
+  seg("#ph", function (v) { photos = +v; });
+  seg("#md", function (v) { mode = v; });
+  var EX = ["Sales Manager", "Software Engineer", "UX Designer", "Doctor", "Chartered Accountant", "Lawyer", "Photographer", "Student", "Fitness Coach", "Content Creator"];
+  var q = $("#quick");
+  for (i = 0; i < EX.length; i++) { var bq = el("button", "", EX[i]); bq.type = "button"; q.appendChild(bq); }
+  q.addEventListener("click", function (e) { if (e.target.tagName === "BUTTON") { $("#role").value = e.target.textContent; run(); } });
+  function run() {
+    var role = $("#role").value.replace(/^\s+|\s+$/g, ""), res = $("#res");
+    if (!role) { $("#role").focus(); return; }
+    var out = pick(role, photos, mode), html = "";
+    for (var k = 0; k < out.length; k++) {
+      var t = out[k].t, why = out[k].h.length ? "Matches: " + out[k].h.slice(0, 4).join(", ") : "Strong all-rounder for your profile";
+      if (t.need === "high" && photos < t.minp) { why += " &middot; best with 6+ photos"; }
+      html += '<div class="res" data-id="' + t.id + '"><div class="im" style="' + thumb(t.id) + '"><span class="rk">#' + (k + 1) + '</span></div><div class="bd"><h3>' + t.name + '</h3><div class="why">' + why + '</div><div class="tags"><span>' + t.mode + '</span><span>' + t.best.split(",")[0] + '</span></div></div></div>';
+    }
+    res.innerHTML = html;
+    var rs = res.children;
+    for (k = 0; k < rs.length; k++) { (function (n, delay) { setTimeout(function () { n.className = "res in"; }, delay); })(rs[k], 80 + k * 110); }
+    if (w.innerWidth < 1024) { res.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" }); }
+  }
+  $("#go").onclick = run;
+  $("#role").addEventListener("keydown", function (e) { if (e.key === "Enter") { e.preventDefault(); run(); } });
+  $("#res").addEventListener("click", function (e) { var c = e.target.closest ? e.target.closest(".res") : null; if (c) { openTheme(c.getAttribute("data-id")); } });
+
+  /* ===== Checkout: UPI + voucher ===== */
+  var co = $("#co");
+  function tab(which) {
+    $("#tbu").className = which === "u" ? "on" : ""; $("#tbv").className = which === "v" ? "on" : "";
+    $("#pu").className = which === "u" ? "pane on" : "pane"; $("#pv").className = which === "v" ? "pane on" : "pane";
+  }
+  var upiUri = "";
+  function setupUpi() {
+    var ok = /^[\w.\-]{2,}@[a-zA-Z]{2,}$/.test(CONFIG.upiId || "");
+    $("#upiOk").style.display = ok ? "" : "none"; $("#upiNo").style.display = ok ? "none" : "";
+    $("#upiMail").textContent = CONFIG.email; $("#upiMail").href = "mailto:" + CONFIG.email;
+    $("#coamt").innerHTML = "&#8377;" + CONFIG.amount;
+    if (!ok) { return; }
+    upiUri = "upi://pay?pa=" + CONFIG.upiId + "&pn=" + encodeURIComponent(CONFIG.payeeName) + "&am=" + CONFIG.amount.toFixed(2) + "&cu=INR&tn=" + encodeURIComponent("Foliocraft Pro");
+    $("#vpa").textContent = CONFIG.upiId; $("#upibtn").href = upiUri;
+    if (w.qrcode) { var q = w.qrcode(0, "M"); q.addData(upiUri); q.make(); $("#qr").innerHTML = '<img alt="UPI QR code" src="' + q.createDataURL(8, 0) + '">'; }
+    if (CONFIG.whatsapp) { $("#pwa").style.display = ""; }
+  }
+  setupUpi();
+  function openCheckout(which) { tab(which); co.className = "co on"; d.body.style.overflow = "hidden"; }
+  function closeCo() { co.className = "co"; d.body.style.overflow = ""; }
+  $("#cox").onclick = closeCo;
+  co.addEventListener("click", function (e) { if (e.target === co) { closeCo(); } });
+  d.addEventListener("keydown", function (e) { if (e.key === "Escape") { closeCo(); } });
+  $("#tbu").onclick = function () { tab("u"); }; $("#tbv").onclick = function () { tab("v"); };
+  if (location.hash === "#voucher" || location.hash === "#buy") { openCheckout(location.hash === "#voucher" ? "v" : "u"); }
+  w.addEventListener("hashchange", function () { if (location.hash === "#voucher" || location.hash === "#buy") { openCheckout(location.hash === "#voucher" ? "v" : "u"); } });
+  $("#cpy").onclick = function () {
+    var b = this; try { navigator.clipboard.writeText(CONFIG.upiId).then(function () { b.textContent = "Copied"; setTimeout(function () { b.textContent = "Copy"; }, 1500); }); } catch (x) {}
+  };
+  function payText() {
+    return "Foliocraft Pro payment\nName: " + $("#pn").value + "\nEmail: " + $("#pe").value + "\nUPI transaction ID / UTR: " + $("#pt").value + "\nAmount: Rs " + CONFIG.amount;
+  }
+  function payValid() {
+    var m = $("#pmsg");
+    if (!$("#pn").value || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test($("#pe").value)) { m.className = "msg err"; m.textContent = "Please add your name and a valid email."; return false; }
+    if (!/^[A-Za-z0-9]{10,25}$/.test($("#pt").value.replace(/\s/g, ""))) { m.className = "msg err"; m.textContent = "Please enter the transaction ID / UTR from your UPI app."; return false; }
+    return true;
+  }
+  $("#psend").onclick = function () {
+    if (!payValid()) { return; }
+    w.location.href = "mailto:" + CONFIG.email + "?subject=" + encodeURIComponent("Foliocraft payment - " + $("#pt").value) + "&body=" + encodeURIComponent(payText());
+    var m = $("#pmsg"); m.className = "msg ok"; m.textContent = "Thanks! Your email app opened with the details - press Send. Your voucher code is emailed once the payment is verified.";
+  };
+  $("#pwa").onclick = function (e) {
+    if (!payValid()) { e.preventDefault(); return; }
+    this.href = "https://wa.me/" + CONFIG.whatsapp + "?text=" + encodeURIComponent(payText());
+  };
+
+  /* voucher -> AES-GCM keys -> decrypt pack in the browser */
+  function b64ToBytes(s) { var bin = atob(s), u = new Uint8Array(bin.length); for (var k = 0; k < bin.length; k++) { u[k] = bin.charCodeAt(k); } return u; }
+  function bytesToHex(buf) { var u = new Uint8Array(buf), h = ""; for (var k = 0; k < u.length; k++) { h += (u[k] < 16 ? "0" : "") + u[k].toString(16); } return h; }
+  function normCode(c) { return c.toUpperCase().replace(/[^0-9A-Z]/g, "").replace(/^FC/, ""); }
+  var enc = w.TextEncoder ? new TextEncoder() : null, subtle = w.crypto && w.crypto.subtle;
+  function vmsg(t, cls) { var m = $("#vmsg"); m.className = "msg" + (cls ? " " + cls : ""); m.textContent = t; }
+  $("#vgo").onclick = function () {
+    var code = normCode($("#vc").value);
+    $("#dl").innerHTML = "";
+    if (!subtle || !enc) { vmsg("Please open this page over https in a modern browser.", "err"); return; }
+    if (code.length !== 16) { vmsg("That doesn't look like a voucher code. Format: FC-XXXX-XXXX-XXXX-XXXX", "err"); return; }
+    vmsg("Checking voucher...");
+    var entry, keys;
+    subtle.digest("SHA-256", enc.encode("fc-id:" + code)).then(function (h) {
+      var id = bytesToHex(h).slice(0, 32);
+      return fetch("vouchers.json", { cache: "no-store" }).then(function (r) { return r.json(); }).then(function (list) {
+        for (var k = 0; k < list.length; k++) { if (list[k].id === id) { entry = list[k]; } }
+        if (!entry) { throw new Error("bad"); }
+        if (entry.exp && new Date(entry.exp + "T23:59:59") < new Date()) { throw new Error("expired"); }
+        return subtle.importKey("raw", enc.encode(code), "PBKDF2", false, ["deriveKey"]);
+      });
+    }).then(function (base) {
+      return subtle.deriveKey({ name: "PBKDF2", salt: b64ToBytes(entry.s), iterations: 150000, hash: "SHA-256" }, base, { name: "AES-GCM", length: 256 }, false, ["decrypt"]);
+    }).then(function (kek) {
+      return subtle.decrypt({ name: "AES-GCM", iv: b64ToBytes(entry.i) }, kek, b64ToBytes(entry.w));
+    }).then(function (plain) {
+      keys = JSON.parse(new TextDecoder().decode(plain));
+      vmsg("Voucher accepted. Your downloads:", "ok");
+      var box = $("#dl");
+      for (var p in keys) {
+        if (!keys.hasOwnProperty(p) || !CONFIG.products[p]) { continue; }
+        var a = el("a", "", CONFIG.products[p].label + " <b>Download</b>"); a.href = "#"; a.setAttribute("data-p", p); box.appendChild(a);
+      }
+    })["catch"](function (err) {
+      vmsg(err && err.message === "expired" ? "This voucher has expired. Please contact us." : "Voucher not valid. Check the code, or contact us if you've paid.", "err");
+    });
+    $("#dl").onclick = function (e) {
+      var a = e.target.closest ? e.target.closest("a") : null; if (!a) { return; }
+      e.preventDefault();
+      var p = a.getAttribute("data-p"), meta = CONFIG.products[p], btn = a.querySelector("b");
+      if (btn.getAttribute("data-busy")) { return; }
+      btn.setAttribute("data-busy", "1"); btn.textContent = "Downloading...";
+      fetch(meta.file, { cache: "no-store" }).then(function (r) { if (!r.ok) { throw new Error("net"); } return r.arrayBuffer(); }).then(function (buf) {
+        btn.textContent = "Unlocking...";
+        return subtle.importKey("raw", b64ToBytes(keys[p]), "AES-GCM", false, ["decrypt"]).then(function (k) {
+          return subtle.decrypt({ name: "AES-GCM", iv: new Uint8Array(buf, 0, 12) }, k, new Uint8Array(buf, 12));
+        });
+      }).then(function (zip) {
+        var url = URL.createObjectURL(new Blob([zip], { type: "application/zip" })), x = d.createElement("a");
+        x.href = url; x.download = meta.name; d.body.appendChild(x); x.click(); d.body.removeChild(x);
+        setTimeout(function () { URL.revokeObjectURL(url); }, 30000);
+        btn.textContent = "Saved"; btn.removeAttribute("data-busy");
+      })["catch"](function () { btn.textContent = "Retry"; btn.removeAttribute("data-busy"); });
+    };
+  };
+  $("#vc").addEventListener("keydown", function (e) { if (e.key === "Enter") { e.preventDefault(); $("#vgo").click(); } });
+
+  /* demo video sound toggle */
+  var dv = $("#dv"), snd = $("#snd");
+  if (dv && snd) { snd.onclick = function () { dv.muted = !dv.muted; if (!dv.muted) { try { dv.play(); } catch (x) {} } snd.innerHTML = dv.muted ? "&#128263; Sound on" : "&#128266; Sound off"; }; }
+
+  /* ===== FAQ ===== */
+  var FAQ = [
+    ["What exactly do I get?", "A Claude skill (one zip file) with 24 themes, preview images, the theme finder and a checker. You add it to your Claude once, then Claude builds and edits your site from your resume."],
+    ["Do I need to know coding?", "No. You chat with Claude. The result is one index.html file plus images, and the hosting steps are written for beginners."],
+    ["Is hosting really free?", "Yes. GitHub Pages, Cloudflare Pages and Netlify all host a site like this for free. Buy a custom domain only if you want one."],
+    ["How do I make changes later?", "Open your Claude chat and ask: change colours, fonts, sections, photos, or switch to another theme. Claude edits the file and you upload it again."],
+    ["Will it invent numbers to make me look good?", "No. Every claim comes from your resume or from you. If a section has nothing real to show, it is removed."],
+    ["I'm a lawyer / doctor / CA. Is that okay?", "Yes, and those themes follow Indian professional rules: a Bar Council disclaimer, a medical registration number with no testimonials, and an ICAI disclosure."],
+    ["Are the streaming, store, music and video themes legal to use?", "Yes. They use common layout patterns with original names, colours and wordmarks. No logos or brand names, and each says it's not affiliated with any platform."],
+    ["How does payment work?", "Pay by UPI from any app (scan the QR or tap the UPI button), then submit your transaction ID. Once the payment is verified you receive a voucher code by email. Enter it under Redeem voucher to download the clean, watermark-free files."],
+    ["Why do the previews have a watermark?", "The demos on this site are protected previews with sample content. Your purchased files have no watermark and are filled with your own details."],
+    ["What do I need to use it?", "A Claude account that supports Skills, your resume (PDF or Word) and at least one photo."]
+  ];
+  var fq = $("#faqs");
+  for (i = 0; i < FAQ.length; i++) { fq.appendChild(el("div", "q rv", "<button type='button'>" + FAQ[i][0] + "</button><div class='a'><p>" + FAQ[i][1] + "</p></div>")); }
+  fq.addEventListener("click", function (e) {
+    if (e.target.tagName !== "BUTTON") { return; }
+    var q = e.target.parentNode, a = q.querySelector(".a"), open = q.className.indexOf("open") > -1;
+    q.className = open ? "q rv in" : "q rv in open"; a.style.maxHeight = open ? "0" : a.scrollHeight + "px";
+  });
+
+  /* ===== Reveal ===== */
+  var rvs = d.querySelectorAll(".rv");
+  if ("IntersectionObserver" in w && !reduce) {
+    var io = new IntersectionObserver(function (es) { for (var k = 0; k < es.length; k++) { if (es[k].isIntersecting) { es[k].target.className += " in"; io.unobserve(es[k].target); } } }, { threshold: 0.05, rootMargin: "0px 0px -40px 0px" });
+    for (i = 0; i < rvs.length; i++) { io.observe(rvs[i]); }
+  } else { for (i = 0; i < rvs.length; i++) { rvs[i].className += " in"; } }
+
+  /* ===== Tilt (steps + gallery) ===== */
+  function tilt(node) {
+    node.addEventListener("mousemove", function (e) {
+      var r = node.getBoundingClientRect(), x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+      node.style.transform = "rotateY(" + ((x - 0.5) * 12) + "deg) rotateX(" + ((0.5 - y) * 10) + "deg) translateZ(10px)";
+      node.style.setProperty("--gx", x * 100 + "%"); node.style.setProperty("--gy", y * 100 + "%");
+    });
+    node.addEventListener("mouseleave", function () { node.style.transform = ""; });
+  }
+  if (!touch && !reduce) { var tl = d.querySelectorAll(".tilt,.tc"); for (i = 0; i < tl.length; i++) { tilt(tl[i]); } }
+
+  /* ===== Cursor + progress ===== */
+  var cur = $("#cur"), dot = $("#dot"), mx = 0, my = 0, cx = 0, cy = 0;
+  if (!touch && !reduce) {
+    w.addEventListener("mousemove", function (e) { mx = e.clientX; my = e.clientY; dot.style.transform = "translate(" + mx + "px," + my + "px)"; });
+    (function loop() { cx += (mx - cx) * 0.12; cy += (my - cy) * 0.12; cur.style.transform = "translate(" + cx + "px," + cy + "px)"; w.requestAnimationFrame(loop); })();
+  }
+  var prog = $("#progress");
+  w.addEventListener("scroll", function () { var h = d.documentElement.scrollHeight - w.innerHeight; prog.style.width = (h > 0 ? (w.pageYOffset / h) * 100 : 0) + "%"; }, { passive: true });
+})();
+</script>
+<script>
+/* Foliocraft content protection: deterrents only (no website can fully block screenshots). */
+(function () {
+  var d = document, w = window, sh, tm;
+  var css = "html,body{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}input,textarea,select,[contenteditable]{-webkit-user-select:text;user-select:text}img{-webkit-user-drag:none}" +
+    "@media print{html,body{display:none!important}}" +
+    ".fc-shield{position:fixed;left:0;top:0;right:0;bottom:0;background:#07070a;z-index:2147483646;display:none;align-items:center;justify-content:center;color:#d4ff3a;font:600 16px/1.5 system-ui,sans-serif;text-align:center;padding:24px}.fc-shield.on{display:flex}";
+  var st = d.createElement("style"); st.appendChild(d.createTextNode(css)); d.head.appendChild(st);
+  function shield(on, ms) {
+    if (!sh) { sh = d.createElement("div"); sh.className = "fc-shield"; sh.innerHTML = "Protected preview &middot; Foliocraft"; d.body.appendChild(sh); }
+    sh.className = on ? "fc-shield on" : "fc-shield";
+    clearTimeout(tm); if (on && ms) { tm = setTimeout(function () { shield(false); }, ms); }
+  }
+  d.addEventListener("contextmenu", function (e) { e.preventDefault(); });
+  d.addEventListener("dragstart", function (e) { if (e.target && e.target.tagName === "IMG") { e.preventDefault(); } });
+  d.addEventListener("copy", function (e) { var t = e.target; if (!(t && (t.tagName === "INPUT" || t.tagName === "TEXTAREA"))) { e.preventDefault(); } });
+  d.addEventListener("keydown", function (e) {
+    var k = (e.key || "").toLowerCase(), c = e.ctrlKey || e.metaKey;
+    if (k === "printscreen" || k === "f12" || (c && (k === "s" || k === "u" || k === "p")) || (c && e.shiftKey && (k === "i" || k === "j" || k === "c" || k === "s" || k === "3" || k === "4" || k === "5"))) {
+      e.preventDefault(); shield(true, 1800);
+    }
+  });
+  d.addEventListener("keyup", function (e) {
+    if ((e.key || "").toLowerCase() === "printscreen") { shield(true, 1800); try { navigator.clipboard.writeText("Protected preview - foliocraft"); } catch (x) {} }
+  });
+  w.addEventListener("blur", function () { shield(true); });
+  w.addEventListener("focus", function () { setTimeout(function () { shield(false); }, 250); });
+  d.addEventListener("visibilitychange", function () { if (d.hidden) { shield(true); } });
+})();
+</script>
+</body>
+</html>
