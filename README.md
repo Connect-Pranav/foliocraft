@@ -1,6 +1,6 @@
 # Foliocraft
 
-24 premium portfolio themes. Upload your resume and photo, Claude picks your best 4, and your site is ready to host free.
+24 premium portfolio themes. Pick a theme, upload your resume and photo, preview and edit your full website in the browser, then pay and download it ready to host free.
 
 Static site (single `index.html`, no build step). Hosted on GitHub Pages.
 
